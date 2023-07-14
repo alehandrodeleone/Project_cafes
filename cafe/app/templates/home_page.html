@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/homev13.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <div class="btn_autorization">
+                <h1 class="btn_a_txt">Авторизация</h1>
+            </div>
+            <div class="btn_registration">
+                <h1 class="btn_r_txt">Регистрация</h1>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+    <div class="container_restaurant">
+        {% for r in page %}
+            <img class='restaurant_photo' src="{{r.photo_restaurant.url}}" >
+        {% endfor %}
+
+    </div>
+
+    <div class="container_restaurant_photo2">
+        {% for r in page %}
+            <img class='restaurant_photo2' src="{{r.photo_restaurant2.url}}" >
+        {% endfor %}
+    </div>
+
+    <div class="container_restaurant_photo3">
+        {% for r in page %}
+            <img class='restaurant_photo3' src="{{r.photo_restaurant3.url}}" >
+        {% endfor %}
+    </div>
+
+
+
+    {% for r in page %}
+        <h1 class="rating">Рейтинг:       {{r.rating}}</h1>
+        <h1 class="kitchen">Кухня:       {{r.kitchen}}</h1>
+        <h1 class="summer_terrace">Терраса:       {{r.terrace_restaurant}}</h1>
+        <h1 class="parking">Паркинг:       {{r.parking_restaurant}}</h1>
+        <h1 class="average_check">Средний чек:       {{r.average_check}}  ₽ </h1>
+        <h1 class="number">Номер:       {{r.phone}}</h1>
+        <h1 class="email">Почта:       {{r.email}}</h1>
+
+    {% endfor %}
+
+
+
+
+    <form method="post" id="form_save" class="input_name_booking" action="{% url 'save_data' %}">
+    {% csrf_token %}
+        {{ form.as_p }}
+        {% for r in page %}
+        <div>
+            <h2 class="name_restaurant" name="name_restaurant_name">{{ r.Name_restaurant }}</h2>
+
+        </div>
+
+        {% endfor %}
+        <h1 class="booking">Бронирование</h1>
+        <label class="text_name_booking" for="input-field">Ваше имя:</label>
+        <input class="input_booking" required type="text" id="input-field" name="input-booking" maxlength=13>
+        <label class="number_booking_text" for="input-field">Номер:</label>
+        <input class="number_booking" required type="tel" id="input-field" name="input-number_booking"  placeholder="+7 (___) ___-__-__"
+        pattern="[+]{1}[7]{1}[0-9]{10}"
+        required>
+        <label class="people_booking_text" for="input-field">Мест:</label>
+        <input class="people_booking" type="text" id="input-field" name="input-people_booking" maxlength=1>
+        <input class="booking_btn" type="submit" value="Забронировать">
+    </form>
+
+
+
+    <div class="about_r">
+        {% for r in page %}
+        <h1 class="about_h">Про заведение:<h1>
+        <h1 class="about">{{r.about}}</h1>
+        {% endfor %}
+
+    </div>
+
+    </div>
+            <div class="download_m">
+        {% for r in page %}
+            <a class="download_menu" href="{{ r.menu_download.url }}" target="_blank">Открыть меню</a>
+        {% endfor %}
+    </div>
+        </div>
+
+
+    <div class="previous">
+        {% if page.has_previous%}
+        {% for r in page %}
+            <a class="previous_page" href="?page={{page.previous_page_number}}" >Назад</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+            </div>
+    <div class="next_p">
+        {% if page.has_next %}
+        {% for r in page %}
+            <a class="next_page" href="?page={{page.next_page_number}}" >Вперед</a>
+>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+
+    <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <h1 class="text_footer_dev">Про разработчика</h1>
+                <h1 class="text_footer_project"> О проекте</h1>
+                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <h1 class="text_footer_api">API</h1>
+        {% endfor %}
+    </div> 
+
+<!--        <div class="pagination">-->
+<!--  {% if restaurant_page.has_previous %}-->
+<!--    <a href="?page={{ restaurant_page.previous_page_number }}">« Previous</a>-->
+<!--  {% endif %}-->
+
+<!--  {% for num in restaurant_page.paginator.page_range %}-->
+<!--    {% if num == restaurant_page.number %}-->
+<!--      <span class="current-page">{{ num }}</span>-->
+<!--    {% elif num > restaurant_page.number|add:'-3' and num < restaurant_page.number|add:'3' %}-->
+<!--      <a href="?page={{ num }}">{{ num }}</a>-->
+<!--    {% endif %}-->
+<!--  {% endfor %}-->
+
+<!--  {% if restaurant_page.has_next %}-->
+<!--    <a href="?page={{ restaurant_page.next_page_number }}">Next »</a>-->
+<!--  {% endif %}-->
+        
+
+
+
+
+</body>
+</html>

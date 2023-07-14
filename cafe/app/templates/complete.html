@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/completev2.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <div class="btn_autorization">
+                <h1 class="btn_a_txt">Авторизация</h1>
+            </div>
+            <div class="btn_registration">
+                <h1 class="btn_r_txt">Регистрация</h1>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="container_image_complete">
+        {% for r in back_img %}
+            <img class='image_complete' src="{{r.complete_image.url}}" >
+        {% endfor %}
+    </div>
+
+    <h1 class="info_complete">Ваша заявка успешно принята. В скором времени наши операторы с вами свяжутся.</h1>
+
+
+
+    <form method="post" id="complete_page_btn" class="complete_btn_homepage" action="{% url 'start_page' %}">
+        {% csrf_token %}
+        <input class="booking_btn" type="submit" value="На главную">
+    </form>
+
+
+
+
+
+
+
+
+    <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <h1 class="text_footer_dev">Про разработчика</h1>
+                <h1 class="text_footer_project"> О проекте</h1>
+                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <h1 class="text_footer_api">API</h1>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+</body>
+</html>

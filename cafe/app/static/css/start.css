@@ -1,0 +1,41 @@
+.container {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+  }
+.container .headers{
+    display: block;
+    margin: 0;
+    padding:0;
+    border: none;
+}
+.window .background{
+
+}
+.container .btn_reg {
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #f7ebeb00;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;}
+
+.container .btn_auto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #f7ebeb00;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;}
