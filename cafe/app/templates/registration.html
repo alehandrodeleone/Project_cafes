@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/registrationsv3.css' %}">
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+</head>
+<body >
+
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <div class="btn_autorization">
+                <h1 class="btn_a_txt">Авторизация</h1>
+            </div>
+
+        {% endfor %}
+    </div>
+
+
+        <form method="post" id="form_save" class="input_name_booking" action="{% url 'registration_complete' %}">
+    {% csrf_token %}
+        {{ form.as_p }}
+      
+        <h2 class="registration_page_lable">Регистрация</h2>
+        <label class="registration_login_lable">Введите логин:</label>
+        <input class="input_login_registration" required type="text" id="input-login_reg" name="input-login" maxlength=40>
+        <label class="registration_password_lable">Придумайте пароль:</label>
+        <input class="input_password_registration" required type="text" id="input-password_reg" name="input-password" maxlength=40>
+        <label class="registration_password_lable_r">Подтвердите пароль:</label>
+        <input class="input_password_registration_r" required type="text" id="input-password_reg_r" name="input-password_r" maxlength=40>
+        <label class="registration_email_lable">Ваш email:</label>
+        <input class="input_email" required type="email" id="input-email_reg" name="input-email_r" maxlength=40>
+        <input class="booking_btn" type="submit" value="Зарегистрировать">
+        <label class="registration_captcha">Введите изображение с картинки:</label>
+         <div class="container_captcha">
+            <img class="img_captcha" src="/media/captcha.png">
+        </div>
+        <input class="input_captcha" required type="text" id="input-captcha_reg_r" name="input-captcha_r" maxlength=5>
+        <input class="reg_page_btn" type="submit" value="Зарегистрироваться">
+
+
+
+    </form>
+
+    
+
+
+
+
+    <form method="post" id="complete_page_btn" class="complete_btn_homepage" action="{% url 'start_page' %}">
+        {% csrf_token %}
+        <input class="booking_btn" type="submit" value="На главную">
+    </form>
+
+
+
+
+
+
+
+
+    <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <h1 class="text_footer_dev">Про разработчика</h1>
+                <h1 class="text_footer_project"> О проекте</h1>
+                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <h1 class="text_footer_api">API</h1>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+</body>
+</html>

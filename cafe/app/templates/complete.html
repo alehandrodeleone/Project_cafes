@@ -21,8 +21,16 @@
                 <h1 class="btn_a_txt">Авторизация</h1>
             </div>
             <div class="btn_registration">
-                <h1 class="btn_r_txt">Регистрация</h1>
-            </div>
+    <form id="registration_form" action="{% url 'registration' %}">
+        <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
+    </form>
+</div>
+
+<script>
+    function submitForm() {
+        document.getElementById("registration_form").submit();
+    }
+</script>
         {% endfor %}
     </div>
 

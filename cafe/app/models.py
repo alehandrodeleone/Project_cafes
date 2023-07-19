@@ -47,6 +47,10 @@ class booking(models.Model):
 class owner(models.Model):
     name_owner=models.CharField(max_length=15)
     last_name_owner=models.CharField(max_length=15)
+    login_owner=models.CharField(max_length=12)
+    password_auth=models.CharField(max_length=20)
+    email_owner=models.EmailField()
+    number_phone=PhoneNumberField(null=True)
     doc_1 = models.ImageField(upload_to='documents_owner/')
     doc_2 = models.ImageField(upload_to='documents_owner/')
     doc_3 = models.ImageField(upload_to='documents_owner/')
@@ -54,7 +58,8 @@ class owner(models.Model):
     def __str__(self):
         return self.name_owner
 
+# class captcha_image(models.Model):
+#     img_captcha=models.ImageField
 
-from django.db import models
 
-# Create your models here.
+############################ исправить систему сохранения регистрационных данных

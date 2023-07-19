@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/homev13.css' %}">
+<link rel='stylesheet' href="{% static 'css/homev14.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -20,9 +20,19 @@
             <div class="btn_autorization">
                 <h1 class="btn_a_txt">Авторизация</h1>
             </div>
-            <div class="btn_registration">
-                <h1 class="btn_r_txt">Регистрация</h1>
-            </div>
+
+<div class="btn_registration">
+    <form id="registration_form" action="{% url 'registration' %}">
+        <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
+    </form>
+</div>
+
+<script>
+    function submitForm() {
+        document.getElementById("registration_form").submit();
+    }
+</script>
+
         {% endfor %}
     </div>
 

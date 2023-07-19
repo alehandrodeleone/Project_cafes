@@ -1,17 +1,19 @@
-
-from .models import Restaurant,ui_elements,booking
+from captcha.image import ImageCaptcha
+from random import choice
+from .models import Restaurant,ui_elements,booking,owner
 from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseRedirect
-
-
+from django.conf import settings
+import os
+from django.contrib import messages
 
 def start_page(request):
     page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
     back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
-    restaurant_info = Restaurant.objects.all()#
+    restaurant_info = Restaurant.objects.all()# Получаем информацию о ресторанах
     paginator = Paginator(restaurant_info, 1)
     page = paginator.get_page(page_number)
     # current_url = request.build_absolute_uri()  # ПОЛУЧЕНИЕ ТЕКУЩЕЙ ССЫЛКИ
@@ -47,3 +49,56 @@ def save_data(request):
         return HttpResponseRedirect(request.path_info)
 
     return render(request, 'complete.html', context)
+
+def registration(request):
+    # owner.objects.all().delete()
+    back_img = ui_elements.objects.all()
+
+    value=["1","q","s","2","H","6","i","L","9","B",'z']
+    pattern=[]
+    for i in range(5):#выбираем кол-во значений в капче
+        pattern.append(choice(value))
+
+
+    image_captcha=ImageCaptcha(width=300, height=200)##### задаем размеры для изображение
+    #image_captcha.write(pattern,'captcha.png')#записываем изображение
+    media_path = settings.MEDIA_ROOT#обозначаем корневую папку медиафалов в нашем случае media указано в settings
+    image_path = os.path.join(settings.MEDIA_ROOT,'captcha.png')# указываем название
+    image_captcha.write(pattern, os.path.join(media_path, image_path))# сохраняем
+
+    context = {
+               'back_img': back_img,
+                'image_path': image_path,
+
+
+               }
+    return render(request, "registration.html", context)
+
+def registration_complete(request):
+    page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
+    back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
+    restaurant_info = Restaurant.objects.all()# Получаем информацию о ресторанах
+    owners=owner.objects.all()
+    paginator = Paginator(restaurant_info, 1)
+    page = paginator.get_page(page_number)
+    # current_url = request.build_absolute_uri()  # ПОЛУЧЕНИЕ ТЕКУЩЕЙ ССЫЛКИ
+
+
+    if request.method == 'POST':#ПОЛУЧАЕМ ИНФОРМАЦИЮ ИЗ HTML ЗАПРОСОВ
+        input1 = request.POST.get('input-login')
+        input2 = request.POST.get('input-password')
+        input3 = request.POST.get('input-email_r')
+        if request.POST.get('input-password')==request.POST.get('input-password_r'):
+            
+
+            a = owner(login_owner=input1, password_auth=input2, email_owner=input3)# сохранение данных из инпутов в модель джанго
+            a.save()
+        else:
+            return HttpResponseRedirect(request.path_info)
+            
+    context = {'page': page,
+           'back_img': back_img,
+           "owners":owners,
+           }
+
+    return render(request, "registration.html", context)
