@@ -8,8 +8,7 @@ from bs4 import BeautifulSoup
 from django.http import HttpResponseRedirect
 from django.conf import settings
 import os
-from django.contrib import messages
-
+from .forms import RegistrationForm
 def start_page(request):
     page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
     back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
@@ -74,31 +73,21 @@ def registration(request):
                }
     return render(request, "registration.html", context)
 
-def registration_complete(request):
-    page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
-    back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
-    restaurant_info = Restaurant.objects.all()# Получаем информацию о ресторанах
-    owners=owner.objects.all()
-    paginator = Paginator(restaurant_info, 1)
-    page = paginator.get_page(page_number)
-    # current_url = request.build_absolute_uri()  # ПОЛУЧЕНИЕ ТЕКУЩЕЙ ССЫЛКИ
 
+def register(request):
+    back_img = ui_elements.objects.all()
 
-    if request.method == 'POST':#ПОЛУЧАЕМ ИНФОРМАЦИЮ ИЗ HTML ЗАПРОСОВ
-        input1 = request.POST.get('input-login')
-        input2 = request.POST.get('input-password')
-        input3 = request.POST.get('input-email_r')
-        if request.POST.get('input-password')==request.POST.get('input-password_r'):
-            
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success/')  # Перенаправление на страницу успешной регистрации
+    else:
+        form = RegistrationForm()
 
-            a = owner(login_owner=input1, password_auth=input2, email_owner=input3)# сохранение данных из инпутов в модель джанго
-            a.save()
-        else:
-            return HttpResponseRedirect(request.path_info)
-            
-    context = {'page': page,
-           'back_img': back_img,
-           "owners":owners,
-           }
+    context={
+        'form': form,
+        'back_img': back_img,
 
-    return render(request, "registration.html", context)
+    }
+    return render(request, 'Registration_new_user.html', context)
