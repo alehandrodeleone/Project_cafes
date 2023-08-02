@@ -18,15 +18,19 @@
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
             <img class='icoheaders' src="{{i.ico_header.url}}" >
-            <div class="btn_autorization">
-                <h1 class="btn_a_txt">Авторизация</h1>
+            <div class="btn_autorization" >
+                <form id="autorization_form" action="{% url 'login' %}">
+                <a href={% url 'login' %} class="btn_a_txt" style="text-decoration: none;" >Авторизация</a>
+            </form>
             </div>
+
 
 <div class="btn_registration">
     <form id="registration_form" action="{% url 'register' %}">
         <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
     </form>
 </div>
+
 
 <script>
     function submitForm() {
@@ -130,7 +134,7 @@
         {% if page.has_next %}
         {% for r in page %}
             <a class="next_page" href="?page={{page.next_page_number}}" >Вперед</a>
->
+
         {% endfor %}
         {% endif %}
     </div>

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Restaurant,ui_elements,booking,owner
-
+from .models import Restaurant,ui_elements,booking
 @admin.register(Restaurant)
 class adminRestaurant(admin.ModelAdmin):
     list_display = ['id', "owner_cafe",'Name_restaurant','rating','kitchen','average_check','photo_restaurant',
@@ -9,9 +8,7 @@ class adminRestaurant(admin.ModelAdmin):
 class adminui(admin.ModelAdmin):
     list_display = ['id','background','header',"ico_header"]
 
-@admin.register(owner)
-class admin_owner(admin.ModelAdmin):
-    list_display = ["id","name_owner"]
+
 
 @admin.register(booking)
 class admin_bookings(admin.ModelAdmin):

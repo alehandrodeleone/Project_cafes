@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'css/user_pagev2.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <div class="btn_logout">
+                <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
+                <div class="user_setting">
+                        <a href={% url 'start_page' %}  class="user_btn" style="text-decoration: none;">{{ user_login }}</a>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+            <div class="footer">
+                {% for i in back_img %}
+                    <img class="footer_img" src="{{i.f_image.url}}">
+                    <div class="footer_btn">
+                        <h1 class="text_footer_dev">Про разработчика</h1>
+                        <h1 class="text_footer_project"> О проекте</h1>
+                        <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                        <h1 class="text_footer_api">API</h1>
+                {% endfor %}
+            </div> 
+</body>
+</html>

@@ -1,10 +1,66 @@
 <!DOCTYPE html>
+
 <html lang="en">
+{%load static %}
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/authv2.css' %}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+
+
+    <div class="btn_registration">
+        <form id="registration_form" action="{% url 'register' %}">
+            <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
+        </form>
+    </div>
+
+
+    <script>
+        function submitForm() {
+            document.getElementById("registration_form").submit();
+        }
+    </script>
+
+            {% endfor %}
+        </div>
+
+
+        <h2 class="label_authorization">Авторизация</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h1 for="username" class="login_auth">Логин</h1>
+        <input type="text" id="username" name="username" class="input_login">
+        <br>
+        <h1 for="password" class="password_auth">Пароль:<h1>
+        <input type="password" id="password" name="password" class="input_password">
+        <br>
+        <input type="submit" value="Авторизоваться" class="btn_auth">
+    </form>
+
+
+
+
+    <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <h1 class="text_footer_dev">Про разработчика</h1>
+                <h1 class="text_footer_project"> О проекте</h1>
+                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <h1 class="text_footer_api">API</h1>
+        {% endfor %}
+    </div> 
 
 </body>
 </html>

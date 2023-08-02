@@ -1,14 +1,16 @@
 from captcha.image import ImageCaptcha
 from random import choice
-from .models import Restaurant,ui_elements,booking,owner
+from .models import Restaurant,ui_elements,booking
 from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseRedirect
-from django.conf import settings
+from django.http import HttpResponse
 import os
 from .forms import RegistrationForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 def start_page(request):
     page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
     back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
@@ -49,34 +51,12 @@ def save_data(request):
 
     return render(request, 'complete.html', context)
 
-def registration(request):
-    # owner.objects.all().delete()
-    back_img = ui_elements.objects.all()
 
-    value=["1","q","s","2","H","6","i","L","9","B",'z']
-    pattern=[]
-    for i in range(5):#выбираем кол-во значений в капче
-        pattern.append(choice(value))
-
-
-    image_captcha=ImageCaptcha(width=300, height=200)##### задаем размеры для изображение
-    #image_captcha.write(pattern,'captcha.png')#записываем изображение
-    media_path = settings.MEDIA_ROOT#обозначаем корневую папку медиафалов в нашем случае media указано в settings
-    image_path = os.path.join(settings.MEDIA_ROOT,'captcha.png')# указываем название
-    image_captcha.write(pattern, os.path.join(media_path, image_path))# сохраняем
-
-    context = {
-               'back_img': back_img,
-                'image_path': image_path,
-
-
-               }
-    return render(request, "registration.html", context)
 
 
 def register(request):
+    # User.objects.all().delete()
     back_img = ui_elements.objects.all()
-
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -91,3 +71,71 @@ def register(request):
 
     }
     return render(request, 'Registration_new_user.html', context)
+
+from django.contrib.auth import authenticate, login
+
+def login_view(request):
+    back_img = ui_elements.objects.all()
+    context={
+        'back_img': back_img,
+    }
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('user_page')
+        else:
+            return HttpResponse('Invalid login credentials')
+    return render(request, 'authorization.html', context)
+
+
+
+def user_page(request):
+    back_img=ui_elements.objects.all()
+    user = request.user
+    context={
+        "back_img":back_img,
+        "user_login":user.username
+    }
+
+    return render(request,"user_page.html",context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def registration(request):
+#     # owner.objects.all().delete()
+#     back_img = ui_elements.objects.all()
+#
+#     value=["1","q","s","2","H","6","i","L","9","B",'z']
+#     pattern=[]
+#     for i in range(5):#выбираем кол-во значений в капче
+#         pattern.append(choice(value))
+#
+#
+#     image_captcha=ImageCaptcha(width=300, height=200)##### задаем размеры для изображение
+#     #image_captcha.write(pattern,'captcha.png')#записываем изображение
+#     media_path = settings.MEDIA_ROOT#обозначаем корневую папку медиафалов в нашем случае media указано в settings
+#     image_path = os.path.join(settings.MEDIA_ROOT,'captcha.png')# указываем название
+#     image_captcha.write(pattern, os.path.join(media_path, image_path))# сохраняем
+#
+#     context = {
+#                'back_img': back_img,
+#                 'image_path': image_path,
+#
+#
+#                }
+#     return render(request, "registration.html", context)

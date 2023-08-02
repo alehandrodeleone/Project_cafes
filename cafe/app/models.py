@@ -1,6 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
+from django.contrib.auth.models import User
 
 
 class Restaurant(models.Model):
@@ -19,7 +19,8 @@ class Restaurant(models.Model):
     menu_download = models.FileField(upload_to="media/menu/")
     email = models.EmailField()
     phone = PhoneNumberField(null=True)
-    owner_cafe=models.OneToOneField("owner",on_delete=models.CASCADE,related_name="res",null=True)
+    owner_cafe=models.OneToOneField(User,on_delete=models.CASCADE,related_name="res",null=True)
+
 
     def __str__(self):
         return self.Name_restaurant
@@ -30,6 +31,7 @@ class ui_elements(models.Model):
     background=models.ImageField(upload_to='ui_bac_image/')
     header=models.ImageField(upload_to='ui_png/')
     ico_header=models.ImageField(upload_to='ico_header/')
+    ico_setting_header = models.ImageField(upload_to='ico_header/',null=True)
     f_image = models.ImageField(upload_to='f_image/')
     complete_image=models.ImageField(upload_to="complete_image/",blank=True)
 
@@ -44,22 +46,19 @@ class booking(models.Model):
     def __str__(self):
         return self.name
 
-class owner(models.Model):
-    name_owner=models.CharField(max_length=15)
-    last_name_owner=models.CharField(max_length=15)
-    login_owner=models.CharField(max_length=12)
-    password_auth=models.CharField(max_length=20)
-    email_owner=models.EmailField()
-    number_phone=PhoneNumberField(null=True)
-    doc_1 = models.ImageField(upload_to='documents_owner/')
-    doc_2 = models.ImageField(upload_to='documents_owner/')
-    doc_3 = models.ImageField(upload_to='documents_owner/')
-
-    def __str__(self):
-        return self.name_owner
-
-# class captcha_image(models.Model):
-#     img_captcha=models.ImageField
+# class owner(models.Model):
+#     name_owner=models.CharField(max_length=15)
+#     last_name_owner=models.CharField(max_length=15)
+#     login_owner=models.CharField(max_length=12)
+#     password_auth=models.CharField(max_length=20)
+#     email_owner=models.EmailField()
+#     number_phone=PhoneNumberField(null=True)
+#     doc_1 = models.ImageField(upload_to='documents_owner/')
+#     doc_2 = models.ImageField(upload_to='documents_owner/')
+#     doc_3 = models.ImageField(upload_to='documents_owner/')
+#
+#     def __str__(self):
+#         return self.name_owner
 
 
-############################ исправить систему сохранения регистрационных данных
+
