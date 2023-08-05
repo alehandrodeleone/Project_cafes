@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'css/application_new_restaurantv5.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <div class="btn_logout">
+                <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
+                <div class="user_setting">
+                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{user}}</a>
+                </div>
+                {% endfor %}
+        </div>
+    </div>  
+<h2 class="info_label"> Уважаемый пользователь</h2>
+{% for i in info %}
+    <div class="info">
+        {{i.info_text_1}}
+      </div>
+     {% endfor %}
+<h2 class="register_new_restaurant_label">Заполните форму</h2>
+<h1 class="name_restaurant_label">Введите название заведения</h1>
+
+<form method=post class="application_new_restaurant_form" action="{% url 'save_application' %}">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input class="name_restaurant_input" name="name_restaurant_input"  required type="text" maxlength=15>
+
+<h1 class="load_file1_label">Загрузите заполененную форму</h1>
+
+  <input type="file" id="myFile" name="myfile1" class="loadfile_1" accept="application/pdf">
+  <button type="button">Загрузить</button>
+
+
+<h1 class="load_file2_label">Загрузите какой-то документ</h1>
+
+  <input type="file" id="myFile" name="myfile2" class="loadfile_2" accept="application/pdf">
+  <button type="button" >Загрузить</button>
+
+
+<h1 class="load_file3_label">Загрузите какой-то документ</h1>
+
+  <input type="file" id="myFile" name="myfile3" class="loadfile_3" accept="application/pdf">
+  <button type="button" >Загрузить</button>
+
+
+<h1 class="load_file4_label">Загрузите какой-то документ</h1>
+
+  <input type="file" id="myFile" name="myfile4" class="loadfile_4"accept="application/pdf">
+  <button type="button" >Загрузить</button>
+
+  <input class="application_btn" type="submit" value="Забронировать">
+</form>
+
+            <div class="footer">
+                {% for i in back_img %}
+                    <img class="footer_img" src="{{i.f_image.url}}">
+                    <div class="footer_btn">
+                        <h1 class="text_footer_dev">Про разработчика</h1>
+                        <h1 class="text_footer_project"> О проекте</h1>
+                        <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                        <h1 class="text_footer_api">API</h1>
+                {% endfor %}
+            </div> 
+</body>
+</html>
+
+
+
+{% comment %} <h1 class="load_file1_label">Загрузите заполененную форму</h1>
+<form id="myForm">
+  <input type="file" id="myFile" name="myfile" class="loadfile_1">
+  <button type="button" onclick="uploadFile()">Загрузить</button>
+</form>
+
+<h1 class="load_file2_label">Загрузите какой-то документ</h1>
+<form id="myForm">
+  <input type="file" id="myFile" name="myfile" class="loadfile_2">
+  <button type="button" onclick="uploadFile()">Загрузить</button>
+</form>
+
+<h1 class="load_file3_label">Загрузите какой-то документ</h1>
+<form id="myForm">
+  <input type="file" id="myFile" name="myfile" class="loadfile_3">
+  <button type="button" onclick="uploadFile()">Загрузить</button>
+</form>
+
+<h1 class="load_file4_label">Загрузите какой-то документ</h1>
+<form id="myForm">
+  <input type="file" id="myFile" name="myfile" class="loadfile_4">
+  <button type="button" onclick="uploadFile()">Загрузить</button>
+</form> {% endcomment %}

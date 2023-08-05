@@ -1,6 +1,6 @@
 from captcha.image import ImageCaptcha
 from random import choice
-from .models import Restaurant,ui_elements,booking
+from .models import *
 from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 import requests
@@ -93,49 +93,73 @@ def login_view(request):
 
 
 def user_page(request):
+    page_number = int(request.GET.get('user_page', 1))  # СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
+    restaurant_info = Restaurant.objects.all()  # Получаем информацию о ресторанах
+    paginator = Paginator(restaurant_info, 1)
+    page = paginator.get_page(page_number)
     back_img=ui_elements.objects.all()
-    user = request.user
+    user = request.user# БЕРЕМ ДАННЫЕ ЮЗЕРА И ПЕРЕДАЕМ ИХ В РЕКВЕСТ ДЛЯ ПОСЛЕДУЮЩЕГО ИСПОЛЬЗОВАЕНИЯ
     context={
         "back_img":back_img,
-        "user_login":user.username
+        "user_login":user.username,
+        "user_page":page
     }
 
     return render(request,"user_page.html",context)
 
 
+def setting_user(request):
+    back_img=ui_elements.objects.all()
+    res = Restaurant.objects.all()
+    user = request.user
+    context={
+        "back_img":back_img,
+        "user":user,
+        "res":res,
+    }
+
+    return render(request,"setting_user.html",context)
 
 
+def application_new_res(request):
+    back_img = ui_elements.objects.all()
+    user = request.user
+    new_restaurant = application_new_restaurant.objects.all()
+    info=info_text.objects.filter(id=1)
+    context={
+        "back_img":back_img,
+       "new_restaurant":new_restaurant,
+        "user":user,
+        "info":info
+    }
 
 
+    return render (request,"application_new_restaurant.html",context)
+
+def save_application(request):
+    previous_url = request.META.get('HTTP_REFERER')#ПОЛУЧЕНИЕ ПРЕДЫДУЩЕЙ СТРАНИЦЫ ДЛЯ ПЕРЕДАЧИ ЕЕ В АДРЕС ДЛЯ ПОСЛЕДУЮЩЕЙ ПАГИНАЦИИ
+    print(previous_url)
+    restaurant_info = Restaurant.objects.all()
+    user = request.user
+    back_img = ui_elements.objects.all()
+    application = application_new_restaurant.objects.all()
+    context = {'back_img': back_img,
+               'restaurant': restaurant_info,
+               "user": user,
+               "application":application
+               }
 
 
+    if request.method == 'POST':#ПОЛУЧАЕМ ИНФОРМАЦИЮ ИЗ HTML ЗАПРОСОВ
+        input1 = request.POST.get('name_restaurant_input')
+        input2 = request.POST.get('myfile1')
+        input3 = request.POST.get('myfile2')
+        input4 = request.POST.get('myfile3')
+        input5 = request.POST.get('myfile4')
 
+        a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4, document3=input5)# сохранение данных из инпутов в модель джанго
+        a.save()
 
+        return HttpResponseRedirect(request.path_info)
 
-
-
-
-
-# def registration(request):
-#     # owner.objects.all().delete()
-#     back_img = ui_elements.objects.all()
-#
-#     value=["1","q","s","2","H","6","i","L","9","B",'z']
-#     pattern=[]
-#     for i in range(5):#выбираем кол-во значений в капче
-#         pattern.append(choice(value))
-#
-#
-#     image_captcha=ImageCaptcha(width=300, height=200)##### задаем размеры для изображение
-#     #image_captcha.write(pattern,'captcha.png')#записываем изображение
-#     media_path = settings.MEDIA_ROOT#обозначаем корневую папку медиафалов в нашем случае media указано в settings
-#     image_path = os.path.join(settings.MEDIA_ROOT,'captcha.png')# указываем название
-#     image_captcha.write(pattern, os.path.join(media_path, image_path))# сохраняем
-#
-#     context = {
-#                'back_img': back_img,
-#                 'image_path': image_path,
-#
-#
-#                }
-#     return render(request, "registration.html", context)
+    return render(request, 'complete.html', context)

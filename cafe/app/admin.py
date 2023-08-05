@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Restaurant,ui_elements,booking
+from .models import Restaurant,ui_elements,booking,application_new_restaurant,info_text
 @admin.register(Restaurant)
 class adminRestaurant(admin.ModelAdmin):
     list_display = ['id', "owner_cafe",'Name_restaurant','rating','kitchen','average_check','photo_restaurant',
@@ -13,14 +13,13 @@ class adminui(admin.ModelAdmin):
 @admin.register(booking)
 class admin_bookings(admin.ModelAdmin):
     list_display = ['id','restaurant','name','number',"places","date"]
-    #
-    # restaurants = models.CharField(max_length=20)
-    # name = models.CharField(max_length=20)
-    # number = models.CharField(max_length=20)
-    # places = models.CharField(max_length=2)
-    # date = models.DateTimeField(auto_now_add=True)
+
+@admin.register(application_new_restaurant)
+class admin_application_new_restaurant(admin.ModelAdmin):
+    list_display = ["id",'name_new_restaurant']
+    list_filter = ['id','name_new_restaurant']
 
 
-from django.contrib import admin
-
-# Register your models here.
+@admin.register(info_text)
+class admin_info_text(admin.ModelAdmin):
+    list_display = ["id","info_text_2"]

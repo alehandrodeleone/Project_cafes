@@ -152,3 +152,32 @@ body{
     top: 16px;
     cursor: pointer;
 }   
+/* //////////////////////////////////////////////////////////////////////// */
+
+
+.custom-button {
+    position: absolute;
+    left: 5%;
+    margin-top: 4%;
+    width: 400px;
+    height: 815px;
+    background-color: #444444;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hover-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-button:hover .hover-image {
+  opacity: 1;
+}
+

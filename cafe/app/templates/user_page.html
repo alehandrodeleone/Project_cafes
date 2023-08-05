@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/user_pagev2.css' %}">
+    <link rel='stylesheet' href="{% static 'css/user_pagev3.css' %}">
 </head>
 <body>
     <div class="container">
@@ -20,10 +20,106 @@
             <div class="btn_logout">
                 <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
                 <div class="user_setting">
-                        <a href={% url 'start_page' %}  class="user_btn" style="text-decoration: none;">{{ user_login }}</a>
+                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{ user_login }}</a>
                 </div>
                 {% endfor %}
+        </div>
+    </div>  
+
+    
+    <div class="container_restaurant">
+        {% for r in user_page %}
+            <img class='restaurant_photo' src="{{r.photo_restaurant.url}}" >
+        {% endfor %}
+    
+    </div>
+    
+    <div class="container_restaurant_photo2">
+        {% for r in user_page %}
+            <img class='restaurant_photo2' src="{{r.photo_restaurant2.url}}" >
+        {% endfor %}
+    </div>
+    
+    <div class="container_restaurant_photo3">
+        {% for r in user_page %}
+            <img class='restaurant_photo3' src="{{r.photo_restaurant3.url}}" >
+        {% endfor %}
+    </div>
+    
+    
+    
+    {% for r in user_page %}
+        <h1 class="rating">Рейтинг:       {{r.rating}}</h1>
+        <h1 class="kitchen">Кухня:       {{r.kitchen}}</h1>
+        <h1 class="summer_terrace">Терраса:       {{r.terrace_restaurant}}</h1>
+        <h1 class="parking">Паркинг:       {{r.parking_restaurant}}</h1>
+        <h1 class="average_check">Средний чек:       {{r.average_check}}  ₽ </h1>
+        <h1 class="number">Номер:       {{r.phone}}</h1>
+        <h1 class="email">Почта:       {{r.email}}</h1>
+    
+    {% endfor %}
+    
+    
+    
+    
+    <form method="post" id="form_save" class="input_name_booking" action="{% url 'save_data' %}">
+    {% csrf_token %}
+        {{ form.as_p }}
+        {% for r in user_page %}
+        <div>
+            <h2 class="name_restaurant" name="name_restaurant_name">{{ r.Name_restaurant }}</h2>
+    
+        </div>
+    
+        {% endfor %}
+        <h1 class="booking">Бронирование</h1>
+        <label class="text_name_booking" for="input-field">Ваше имя:</label>
+        <input class="input_booking" required type="text" id="input-field" name="input-booking" maxlength=13>
+        <label class="number_booking_text" for="input-field">Номер:</label>
+        <input class="number_booking" required type="tel" id="input-field" name="input-number_booking"  placeholder="+7 (___) ___-__-__"
+        pattern="[+]{1}[7]{1}[0-9]{10}"
+        required>
+        <label class="people_booking_text" for="input-field">Мест:</label>
+        <input class="people_booking" type="text" id="input-field" name="input-people_booking" maxlength=1>
+        <input class="booking_btn" type="submit" value="Забронировать">
+    </form>
+    
+    
+    
+    <div class="about_r">
+        {% for r in user_page %}
+        <h1 class="about_h">Про заведение:<h1>
+        <h1 class="about">{{r.about}}</h1>
+        {% endfor %}
+    
+    </div>
+    
+    </div>
+            <div class="download_m">
+        {% for r in user_page %}
+            <a class="download_menu" href="{{ r.menu_download.url }}" target="_blank">Открыть меню</a>
+        {% endfor %}
+    </div>
+        </div>
+    
+    
+    <div class="previous">
+        {% if user_page.has_previous%}
+        {% for r in user_page %}
+            <a class="previous_page" href="?user_page={{user_page.previous_page_number}}" >Назад</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+    
             </div>
+    <div class="next_p">
+        {% if user_page.has_next %}
+        {% for r in user_page %}
+            <a class="next_page" href="?user_page={{user_page.next_page_number}}" >Вперед</a>
+    
+        {% endfor %}
+        {% endif %}
+    </div>
 
 
 

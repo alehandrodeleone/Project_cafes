@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'css/setting_userv3.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <div class="btn_logout">
+                <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
+                <div class="user_setting">
+                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{ user}}</a>
+                </div>
+                {% endfor %}
+        </div>
+    </div>  
+
+    {% comment %} <button class="custom-button">Зарегистрировать свой ресторан
+        {% for p in back_img %}
+    <img src="{{p.new_restaurant_setting_img.url}}" alt="Изображение" class="hover-image">
+    {% endfor %}
+    </button> {% endcomment %}
+    <button class="custom-button" onclick="register_new_restaurant()">Зарегистрировать свой ресторан
+        {% for p in back_img %}
+    <img src="{{p.new_restaurant_setting_img.url}}" alt="Изображение" class="hover-image">
+    {% endfor %}
+    </button>
+<script>
+    function register_new_restaurant(){
+        window.location.href = "{% url 'application_new_res' %}";
+    }
+</script>
+
+    <button class="custom-button">Редактировать свой ресторан
+        {% for p in back_img %}
+    <img src="{{p.edit_restaurant_setting_img.url}}" alt="Изображение" class="hover-image">
+    {% endfor %}
+    </button>
+
+    <button class="custom-button">Редактировать профиль
+        {% for p in back_img %}
+    <img src="{{p.user_setting_img.url}}" alt="Изображение" class="hover-image">
+    {% endfor %}
+    </button>
+    <button class="custom-button">Техподдержка
+        {% for p in back_img %}
+    <img src="{{p.support_setting_img.url}}" alt="Изображение" class="hover-image">
+    {% endfor %}
+    </button>
+
+
+
+
+    
+
+            <div class="footer">
+                {% for i in back_img %}
+                    <img class="footer_img" src="{{i.f_image.url}}">
+                    <div class="footer_btn">
+                        <h1 class="text_footer_dev">Про разработчика</h1>
+                        <h1 class="text_footer_project"> О проекте</h1>
+                        <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                        <h1 class="text_footer_api">API</h1>
+                {% endfor %}
+            </div> 
+</body>
+</html>

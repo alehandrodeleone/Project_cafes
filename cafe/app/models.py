@@ -34,6 +34,10 @@ class ui_elements(models.Model):
     ico_setting_header = models.ImageField(upload_to='ico_header/',null=True)
     f_image = models.ImageField(upload_to='f_image/')
     complete_image=models.ImageField(upload_to="complete_image/",blank=True)
+    new_restaurant_setting_img=models.ImageField(upload_to="setting_img/",blank=True)
+    edit_restaurant_setting_img = models.ImageField(upload_to="setting_img/", blank=True)
+    user_setting_img = models.ImageField(upload_to="setting_img/", blank=True)
+    support_setting_img=models.ImageField(upload_to="setting_img/", blank=True)
 
 class booking(models.Model):
     restaurant = models.CharField(max_length=20)
@@ -46,19 +50,16 @@ class booking(models.Model):
     def __str__(self):
         return self.name
 
-# class owner(models.Model):
-#     name_owner=models.CharField(max_length=15)
-#     last_name_owner=models.CharField(max_length=15)
-#     login_owner=models.CharField(max_length=12)
-#     password_auth=models.CharField(max_length=20)
-#     email_owner=models.EmailField()
-#     number_phone=PhoneNumberField(null=True)
-#     doc_1 = models.ImageField(upload_to='documents_owner/')
-#     doc_2 = models.ImageField(upload_to='documents_owner/')
-#     doc_3 = models.ImageField(upload_to='documents_owner/')
-#
-#     def __str__(self):
-#         return self.name_owner
+class application_new_restaurant(models.Model):
+    name_new_restaurant=models.CharField(max_length=15)
+    blank = models.FileField(upload_to="documents_owner")
+    document1 = models.FileField(upload_to="documents_owner")
+    document2 = models.FileField(upload_to="documents_owner")
+    document3 = models.FileField(upload_to="documents_owner")
+
+class info_text(models.Model):
+    info_text_1 = models.TextField(max_length=800, null=True)
+    info_text_2 = models.CharField(max_length=25, null=True)
 
 
 
