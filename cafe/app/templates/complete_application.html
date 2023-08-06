@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/complete_application.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+<p id='head1' class='header'>Заявка успешно принята</p>
+<p id='head2' class='header'>пожалуйста</p>
+<p id='head3' class='header'>ожидайте...</p>
+<p id='head4' class='header'>После проверки мы с вами свяжемся</p>
+<p id='head5' class='header'>Спасибо за доверие</p>
+
+<button onclick="back()">Домой</button>
+<script>
+    function back(){
+        window.location.href = "{% url 'setting_user' %}";
+    }
+</script>
+  <div class='light x1'></div>
+  <div class='light x2'></div>
+  <div class='light x3'></div>
+  <div class='light x4'></div>
+  <div class='light x5'></div>
+  <div class='light x6'></div>
+  <div class='light x7'></div>
+  <div class='light x8'></div>
+  <div class='light x9'></div>
+</body>
+</html>

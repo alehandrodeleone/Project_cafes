@@ -3,7 +3,7 @@ from .models import Restaurant,ui_elements,booking,application_new_restaurant,in
 @admin.register(Restaurant)
 class adminRestaurant(admin.ModelAdmin):
     list_display = ['id', "owner_cafe",'Name_restaurant','rating','kitchen','average_check','photo_restaurant',
-                    'photo_restaurant2','photo_restaurant3','menu','menu_download','email',"phone"]
+                    'photo_restaurant2','photo_restaurant3','menu_download','email',"phone"]
 @admin.register(ui_elements)
 class adminui(admin.ModelAdmin):
     list_display = ['id','background','header',"ico_header"]

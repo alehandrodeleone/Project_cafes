@@ -19,7 +19,7 @@ urlpatterns = [
     path("user_page/",user_page,name="user_page"),
     path("setting_user/",setting_user,name="setting_user"),
     path("application_new_res",application_new_res,name='application_new_res'),
-    path('save_application/', save_application, name='save_application'),
+    path('save_application/', save_application, name='save_application_send'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Restaurant(models.Model):
     Name_restaurant = models.CharField(max_length=15)
     Address = models.CharField(max_length=25)
-    rating = models.IntegerField()
+    rating = models.IntegerField(null=True)
     about = models.TextField(max_length=400)
     terrace_restaurant = models.CharField(max_length=11)
     parking_restaurant = models.CharField(max_length=11)
@@ -15,8 +15,7 @@ class Restaurant(models.Model):
     photo_restaurant = models.ImageField(upload_to='photo_restaurant/')
     photo_restaurant2 = models.ImageField(upload_to='second_photo_restaurant/')
     photo_restaurant3 = models.ImageField(upload_to='third_photo_restaurant/')
-    menu = models.ImageField(upload_to='menu_img/')
-    menu_download = models.FileField(upload_to="media/menu/")
+    menu_download = models.FileField(upload_to="menu/")
     email = models.EmailField()
     phone = PhoneNumberField(null=True)
     owner_cafe=models.OneToOneField(User,on_delete=models.CASCADE,related_name="res",null=True)

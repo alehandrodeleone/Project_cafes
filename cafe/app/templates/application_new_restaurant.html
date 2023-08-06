@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/application_new_restaurantv5.css' %}">
+    <link rel='stylesheet' href="{% static 'css/application_new_restaurantv6.css' %}">
 
 </head>
 <body>
@@ -33,37 +33,72 @@
       </div>
      {% endfor %}
 <h2 class="register_new_restaurant_label">Заполните форму</h2>
-<h1 class="name_restaurant_label">Введите название заведения</h1>
 
-<form method=post class="application_new_restaurant_form" action="{% url 'save_application' %}">
+<h1 class="name_restaurant_label">Введите название заведения</h1>
+<form method=post class="application_new_restaurant_form" action="{% url 'save_application_send' %}">
     {% csrf_token %}
         {{ form.as_p }}
         <input class="name_restaurant_input" name="name_restaurant_input"  required type="text" maxlength=15>
 
 <h1 class="load_file1_label">Загрузите заполененную форму</h1>
-
   <input type="file" id="myFile" name="myfile1" class="loadfile_1" accept="application/pdf">
-  <button type="button">Загрузить</button>
+
 
 
 <h1 class="load_file2_label">Загрузите какой-то документ</h1>
-
   <input type="file" id="myFile" name="myfile2" class="loadfile_2" accept="application/pdf">
-  <button type="button" >Загрузить</button>
-
 
 <h1 class="load_file3_label">Загрузите какой-то документ</h1>
-
   <input type="file" id="myFile" name="myfile3" class="loadfile_3" accept="application/pdf">
-  <button type="button" >Загрузить</button>
-
+  
 
 <h1 class="load_file4_label">Загрузите какой-то документ</h1>
-
   <input type="file" id="myFile" name="myfile4" class="loadfile_4"accept="application/pdf">
-  <button type="button" >Загрузить</button>
+  
+  
 
-  <input class="application_btn" type="submit" value="Забронировать">
+{% comment %} /////////////////////////////////////////////////////////////////////////////////////////////////////////// {% endcomment %}
+<h1 class="name_restaurant_label_post">Введите название заведения</h1>
+<input class="name_restaurant_input_post" name="name_restaurant_input_post"  required type="text" maxlength=15>
+
+<h1 class="adress_label_post">Адрес заведения</h1>
+<input class="adress_input_post" name="adress_input_post"  required type="text" maxlength=25>
+
+<h1 class="terrace_label_post">Летняя терраса ? (Есть,Нет)</h1>
+<input class="terrace_input_post" name="terrace_input_post"  required type="text" maxlength=25>
+
+<h1 class="parking_label_post">Паркинг ? (Есть,Нет)</h1>
+<input class="parking_input_post" name="parking_input_post"  required type="text" maxlength=25>
+
+
+<h1 class="kitchen_label_post">Кухня (Европейская, Азиатская,итд)</h1>
+<input class="kitchen_input_post" name="kitchen_input_post"  required type="text" maxlength=25>
+
+<h1 class="average_check_label_post">Средний чек</h1>
+<input class="average_check_input_post" name="average_check_input_post"  required type="number" maxlength=25>
+
+<h1 class="photo_restaurant_label_post">Загрузите фото</h1>
+<input type="file" id="myFile" name="photo_restaurant" class="photo_restaurant" >
+<input type="file" id="myFile" name="photo_restaurant2" class="photo_restaurant2" >
+<input type="file" id="myFile" name="photo_restaurant3" class="photo_restaurant3" > 
+
+<h1 class="menu_download_label">Загрузите меню (PDF)</h1>
+<input type="file" id="myFile" name="menu_download" class="menu_download" accept="application/pdf">
+
+<h1 class="email_label_post">Введите email</h1>
+<input class="email_input_post" name="email_input_post"  required type="text" maxlength=25>
+
+<h1 class="number_label_post">Номер телефона</h1>
+<input class="number_input_post" name="number_input_post"  required type="text" maxlength=25>
+
+<h1 class="about_label">Про заведение</h1>
+<textarea class="about" rows="8" cols="50" maxlength=400 name="about">
+</textarea>
+
+<button type="submit">
+  Отправить
+</button>
+
 </form>
 
             <div class="footer">

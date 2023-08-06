@@ -293,3 +293,201 @@ body{
     top: 20.5%;
 
 }
+
+.adress_label_post{
+    position: absolute;
+    left: 52%;
+    top: 25%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.adress_input_post{
+    position: absolute;
+    left: 52%;
+    top: 27.5%;
+
+}
+
+.terrace_label_post{
+    position: absolute;
+    left: 52%;
+    top: 32%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.terrace_input_post{
+    position: absolute;
+    left: 52%;
+    top: 34.5%;
+
+}
+
+.parking_label_post{
+    position: absolute;
+    left: 52%;
+    top: 39%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.parking_input_post{
+    position: absolute;
+    left: 52%;
+    top: 41.5%;
+
+}
+
+.kitchen_label_post{
+    position: absolute;
+    left: 52%;
+    top: 46%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.kitchen_input_post{
+    position: absolute;
+    left: 52%;
+    top: 48.5%;
+
+}
+
+.average_check_label_post{
+    position: absolute;
+    left: 52%;
+    top: 53%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.average_check_input_post{
+    position: absolute;
+    left: 52%;
+    top: 55.5%;
+
+}
+
+.email_label_post{
+    position: absolute;
+    left: 66%;
+    top: 18%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.email_input_post{
+    position: absolute;
+    left: 66%;
+    top: 20.5%;
+
+}
+
+.number_label_post{
+    position: absolute;
+    left: 66%;
+    top: 25%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.number_input_post{
+    position: absolute;
+    left: 66%;
+    top: 27.5%;
+}
+
+.photo_restaurant2{
+    position: absolute;
+    left: 66%;
+    top: 39%;
+
+}
+.photo_restaurant3{
+    position: absolute;
+    left: 66%;
+    top: 43.5%;
+
+}
+
+.menu_download_label{
+    position: absolute;
+    left: 66%;
+    top: 48%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.menu_download{
+    position: absolute;
+    left: 66%;
+    top:50.5%;
+}
+
+.photo_restaurant_label_post{
+    position: absolute;
+    left: 66%;
+    top: 32%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.photo_restaurant{
+    position: absolute;
+    left: 66%;
+    top: 34.5%;
+}
+
+
+.about_label{
+    position: absolute;
+    left: 52%;
+    top: 60%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+.about{
+    position: absolute;
+    left: 52%;
+    top: 62.5%;
+}
+
+
+
+
+
+  button {
+    position: absolute;
+    background: #FBD148;
+    box-sizing: border-box;
+    left: 42%;
+    top: 82%;
+    border: 0;
+    outline: 0;
+    padding: 1rem 3rem;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .25s ease;
+  }
+  
+  button::before {
+    position: absolute;
+    content: '';
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    transform: translate(-5px, -5px);
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(84, 84, 84);
+    transition: .25s ease;
+  }
+  
+  button:hover {
+    transform: translate(-5px, -5px);
+  }
+  
+  button:hover::before {
+    transform: translate(5px, 5px);
+  }

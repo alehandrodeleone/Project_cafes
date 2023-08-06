@@ -157,9 +157,39 @@ def save_application(request):
         input4 = request.POST.get('myfile3')
         input5 = request.POST.get('myfile4')
 
+
+
+
+
+
         a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4, document3=input5)# сохранение данных из инпутов в модель джанго
         a.save()
 
+
+        if request.method == 'POST':
+            input6 = request.POST.get('name_restaurant_input_post')
+            input7 = request.POST.get('adress_input_post')
+            input8 = request.POST.get('terrace_input_post')
+            input9 = request.POST.get('parking_input_post')
+            input10 = request.POST.get('kitchen_input_post')
+            input11 = request.POST.get('average_check_input_post')
+            input12 = request.POST.get('photo_restaurant')
+            input13 = request.POST.get('photo_restaurant2')
+            input14 = request.POST.get('photo_restaurant3')
+            input15 = request.POST.get('menu_download')
+            input16 = request.POST.get('email_input_post')
+            input17 = request.POST.get('number_input_post')
+            input18 = request.POST.get('about')
+            b = Restaurant(Name_restaurant=input6,Address=input7,about=input18,terrace_restaurant=input8,parking_restaurant=input9,
+                                kitchen=input10,average_check=input11,photo_restaurant=input12,
+                                photo_restaurant2=input13,photo_restaurant3=input14,menu_download=input15,email=input16,phone=input17)
+
+            b.save()
+
+
+
+
+
         return HttpResponseRedirect(request.path_info)
 
-    return render(request, 'complete.html', context)
+    return render(request, 'complete_application.html', context)
