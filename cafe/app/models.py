@@ -51,10 +51,10 @@ class booking(models.Model):
 
 class application_new_restaurant(models.Model):
     name_new_restaurant=models.CharField(max_length=15)
-    blank = models.FileField(upload_to="documents_owner")
-    document1 = models.FileField(upload_to="documents_owner")
-    document2 = models.FileField(upload_to="documents_owner")
-    document3 = models.FileField(upload_to="documents_owner")
+    blank = models.FileField(upload_to="documents_owner/")
+    document1 = models.FileField(upload_to="documents_owner/")
+    document2 = models.FileField(upload_to="documents_owner/")
+    document3 = models.FileField(upload_to="documents_owner/")
 
 class info_text(models.Model):
     info_text_1 = models.TextField(max_length=800, null=True)

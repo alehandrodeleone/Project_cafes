@@ -149,47 +149,45 @@ def save_application(request):
                "application":application
                }
 
-
     if request.method == 'POST':#ПОЛУЧАЕМ ИНФОРМАЦИЮ ИЗ HTML ЗАПРОСОВ
         input1 = request.POST.get('name_restaurant_input')
-        input2 = request.POST.get('myfile1')
-        input3 = request.POST.get('myfile2')
-        input4 = request.POST.get('myfile3')
-        input5 = request.POST.get('myfile4')
+        input2 = request.FILES.get('myfile1')
+        input3 = request.FILES.get('myfile2')
+        input4 = request.FILES.get('myfile3')
+        input5 = request.FILES.get('myfile4')
+
+        input6 = request.POST.get("name_restaurant_input_post")
+        input7 = request.POST.get("adress_input_post")
+        input8 = request.POST.get("terrace_input_post")
+        input9 = request.POST.get("parking_input_post")
+        input10 = request.POST.get("kitchen_input_post")
+        input11 = request.POST.get("average_check_input_post")
+        input12 = request.POST.get("email_input_post")
+        input13 = request.POST.get("number_input_post")
+        input14 = request.POST.get("about")
+
+        input15 = request.FILES.get('photo_restaurant')
+        input16 = request.FILES.get('photo_restaurant2')
+        input17 = request.FILES.get('photo_restaurant3')
+        input18 = request.FILES.get('menu_download')
 
 
-
-
-
-
-        a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4, document3=input5)# сохранение данных из инпутов в модель джанго
+        a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4,document3=input5)# сохранение данных из инпутов в модель джанго
         a.save()
 
-
-        if request.method == 'POST':
-            input6 = request.POST.get('name_restaurant_input_post')
-            input7 = request.POST.get('adress_input_post')
-            input8 = request.POST.get('terrace_input_post')
-            input9 = request.POST.get('parking_input_post')
-            input10 = request.POST.get('kitchen_input_post')
-            input11 = request.POST.get('average_check_input_post')
-            input12 = request.POST.get('photo_restaurant')
-            input13 = request.POST.get('photo_restaurant2')
-            input14 = request.POST.get('photo_restaurant3')
-            input15 = request.POST.get('menu_download')
-            input16 = request.POST.get('email_input_post')
-            input17 = request.POST.get('number_input_post')
-            input18 = request.POST.get('about')
-            b = Restaurant(Name_restaurant=input6,Address=input7,about=input18,terrace_restaurant=input8,parking_restaurant=input9,
-                                kitchen=input10,average_check=input11,photo_restaurant=input12,
-                                photo_restaurant2=input13,photo_restaurant3=input14,menu_download=input15,email=input16,phone=input17)
-
-            b.save()
-
-
-
+        b = Restaurant(Name_restaurant=input6,Address=input7,terrace_restaurant=input8,parking_restaurant=input9,
+                     kitchen=input10,average_check=input11,email=input12,phone=input13,about=input14,photo_restaurant=input15,
+                     photo_restaurant2=input16,photo_restaurant3=input17,menu_download=input18)
+        b.save()
 
 
         return HttpResponseRedirect(request.path_info)
+
+
+
+
+
+
+
 
     return render(request, 'complete_application.html', context)

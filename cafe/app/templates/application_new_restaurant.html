@@ -35,7 +35,7 @@
 <h2 class="register_new_restaurant_label">Заполните форму</h2>
 
 <h1 class="name_restaurant_label">Введите название заведения</h1>
-<form method=post class="application_new_restaurant_form" action="{% url 'save_application_send' %}">
+<form method="POST" class="application_new_restaurant_form" enctype="multipart/form-data" action="{% url 'save_application_send' %}">
     {% csrf_token %}
         {{ form.as_p }}
         <input class="name_restaurant_input" name="name_restaurant_input"  required type="text" maxlength=15>

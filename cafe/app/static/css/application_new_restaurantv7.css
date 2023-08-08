@@ -1,0 +1,499 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* /////////////////////////////////////////////////HDR///////////////////////////////////// */
+body{
+    background: #ffffff;
+}
+
+.container {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container .headers{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 64px;
+    width: 100%;
+}
+
+.container .ico_setting_headers{
+    position: absolute;
+    margin:0;
+    height: 20px;
+    width: 20px;
+    right: 220px;
+    top: 22px;
+
+}
+
+
+.container .icoheaders{
+    position: absolute;
+    margin:0;
+    height: 16;
+    width: 16;
+    top: 14px;
+    left: 32px;
+}
+
+
+
+.container .btn_logout{
+    position: absolute;
+    margin-right: 0em;
+    margin-left: 0em;
+    right: 32px;
+    top: 22px;
+}
+
+.container .btn_logout .btn_logout_txt{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container .user_setting{
+    position: absolute;
+    margin-right: 0em;
+    margin-left: 0em;
+    right: 132px;
+    top: 0px;
+
+}
+
+.container .user_setting .user_btn{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+.container .btn_a_txt:hover {
+    color: #a8dfffb9;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+.container .btn_r_txt:hover {
+    color: #a8dfffb9;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+
+
+
+/* /////////////////////////////////////////////////FTR/////////////////////////////////// */
+
+
+.footer {
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    height: 80px; /* высота футера */
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.footer .footer_img{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    width: 100%;
+}
+
+.footer .footer_btn .text_footer_dev{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 32px;
+    top: 16px;
+    cursor: pointer;
+}   
+
+.footer .footer_btn .text_footer_project{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 32px;
+    top: 32px;
+    cursor: pointer;
+}   
+
+.footer .footer_btn .text_footer_telegram{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 32px;
+    top: 48px;
+    cursor: pointer;
+}   
+
+.footer .footer_btn .text_footer_api{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 152px;
+    top: 16px;
+    cursor: pointer;
+}   
+/* //////////////////////////////////////////////////////////////////////// */
+
+.info{
+    position: absolute;
+    left: 2%;
+    top: 18%;
+    width: 400px;
+    height: 600px;
+    background-color: rgb(221, 221, 221);
+    text-align: left;
+    line-height: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 10px;
+  }
+
+.info_label{
+    position: absolute;
+    left: 2%;
+    top: 13%;
+    font-size: 22px;
+    font-family: 'Roboto Light 300', sans-serif;
+    
+}
+
+.register_new_restaurant_label{
+    position: absolute;
+    left: 35%;
+    top: 13%;
+    font-size: 22px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.name_restaurant_label{
+    position: absolute;
+    left: 35%;
+    top: 18%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.name_restaurant_input{
+    position: absolute;
+    left: 35%;
+    top: 20.5%;
+
+}
+.load_file1_label{
+    position: absolute;
+    left: 35%;
+    top: 25%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.loadfile_1{
+    position: absolute;
+    left: 35%;
+    top: 28%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.load_file2_label{
+    position: absolute;
+    left: 35%;
+    top: 33%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.loadfile_2{
+    position: absolute;
+    left: 35%;
+    top: 36%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.load_file3_label{
+    position: absolute;
+    left: 35%;
+    top: 41%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.loadfile_3{
+    position: absolute;
+    left: 35%;
+    top: 44%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.load_file4_label{
+    position: absolute;
+    left: 35%;
+    top: 49%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.loadfile_4{
+    position: absolute;
+    left: 35%;
+    top: 52%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.application_btn{
+    position: absolute;
+    left: 35%;
+    top: 58%;
+
+}
+
+.name_restaurant_label_post{
+    position: absolute;
+    left: 52%;
+    top: 18%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.name_restaurant_input_post{
+    position: absolute;
+    left: 52%;
+    top: 20.5%;
+
+}
+
+.adress_label_post{
+    position: absolute;
+    left: 52%;
+    top: 25%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.adress_input_post{
+    position: absolute;
+    left: 52%;
+    top: 27.5%;
+
+}
+
+.terrace_label_post{
+    position: absolute;
+    left: 52%;
+    top: 32%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.terrace_input_post{
+    position: absolute;
+    left: 52%;
+    top: 34.5%;
+
+}
+
+.parking_label_post{
+    position: absolute;
+    left: 52%;
+    top: 39%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.parking_input_post{
+    position: absolute;
+    left: 52%;
+    top: 41.5%;
+
+}
+
+.kitchen_label_post{
+    position: absolute;
+    left: 52%;
+    top: 46%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.kitchen_input_post{
+    position: absolute;
+    left: 52%;
+    top: 48.5%;
+
+}
+
+.average_check_label_post{
+    position: absolute;
+    left: 52%;
+    top: 53%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.average_check_input_post{
+    position: absolute;
+    left: 52%;
+    top: 55.5%;
+
+}
+
+.email_label_post{
+    position: absolute;
+    left: 66%;
+    top: 18%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+.email_input_post{
+    position: absolute;
+    left: 66%;
+    top: 20.5%;
+
+}
+
+.number_label_post{
+    position: absolute;
+    left: 66%;
+    top: 25%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.number_input_post{
+    position: absolute;
+    left: 66%;
+    top: 27.5%;
+}
+
+.photo_restaurant2{
+    position: absolute;
+    left: 66%;
+    top: 39%;
+
+}
+.photo_restaurant3{
+    position: absolute;
+    left: 66%;
+    top: 43.5%;
+
+}
+
+.menu_download_label{
+    position: absolute;
+    left: 66%;
+    top: 48%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.menu_download{
+    position: absolute;
+    left: 66%;
+    top:50.5%;
+}
+
+.photo_restaurant_label_post{
+    position: absolute;
+    left: 66%;
+    top: 32%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.photo_restaurant{
+    position: absolute;
+    left: 66%;
+    top: 34.5%;
+}
+
+
+.about_label{
+    position: absolute;
+    left: 52%;
+    top: 60%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+.about{
+    position: absolute;
+    left: 52%;
+    top: 62.5%;
+}
+
+
+
+
+
+  button {
+    position: absolute;
+    background: #FBD148;
+    box-sizing: border-box;
+    left: 42%;
+    top: 82%;
+    border: 0;
+    outline: 0;
+    padding: 1rem 3rem;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .25s ease;
+  }
+  
+  button::before {
+    position: absolute;
+    content: '';
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    transform: translate(-5px, -5px);
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(84, 84, 84);
+    transition: .25s ease;
+  }
+  
+  button:hover {
+    transform: translate(-5px, -5px);
+  }
+  
+  button:hover::before {
+    transform: translate(5px, 5px);
+  }
+
+  .qwe{
+    position: absolute;
+    left: 90%;
+    top: 90%;
+  }
