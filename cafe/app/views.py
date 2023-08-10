@@ -1,20 +1,19 @@
-from captcha.image import ImageCaptcha
-from random import choice
+
 from .models import *
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-import os
-from .forms import RegistrationForm
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from .forms import *
+
+
 def start_page(request):
+    # Restaurant.objects.all().delete()
     page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
     back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
-    restaurant_info = Restaurant.objects.all()# Получаем информацию о ресторанах
+    restaurant_info = Restaurant.objects.filter(to_publish=True)# Получаем информацию о ресторанах
     paginator = Paginator(restaurant_info, 1)
     page = paginator.get_page(page_number)
     # current_url = request.build_absolute_uri()  # ПОЛУЧЕНИЕ ТЕКУЩЕЙ ССЫЛКИ
@@ -55,7 +54,7 @@ def save_data(request):
 
 
 def register(request):
-    # User.objects.all().delete()
+
     back_img = ui_elements.objects.all()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -94,7 +93,7 @@ def login_view(request):
 
 def user_page(request):
     page_number = int(request.GET.get('user_page', 1))  # СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
-    restaurant_info = Restaurant.objects.all()  # Получаем информацию о ресторанах
+    restaurant_info = Restaurant.objects.filter(to_publish=True)  # Получаем информацию о ресторанах
     paginator = Paginator(restaurant_info, 1)
     page = paginator.get_page(page_number)
     back_img=ui_elements.objects.all()
@@ -155,7 +154,6 @@ def save_application(request):
         input3 = request.FILES.get('myfile2')
         input4 = request.FILES.get('myfile3')
         input5 = request.FILES.get('myfile4')
-
         input6 = request.POST.get("name_restaurant_input_post")
         input7 = request.POST.get("adress_input_post")
         input8 = request.POST.get("terrace_input_post")
@@ -165,13 +163,10 @@ def save_application(request):
         input12 = request.POST.get("email_input_post")
         input13 = request.POST.get("number_input_post")
         input14 = request.POST.get("about")
-
         input15 = request.FILES.get('photo_restaurant')
         input16 = request.FILES.get('photo_restaurant2')
         input17 = request.FILES.get('photo_restaurant3')
         input18 = request.FILES.get('menu_download')
-
-
         a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4,document3=input5)# сохранение данных из инпутов в модель джанго
         a.save()
 
@@ -179,15 +174,52 @@ def save_application(request):
                      kitchen=input10,average_check=input11,email=input12,phone=input13,about=input14,photo_restaurant=input15,
                      photo_restaurant2=input16,photo_restaurant3=input17,menu_download=input18)
         b.save()
-
-
         return HttpResponseRedirect(request.path_info)
-
-
-
-
-
-
-
-
     return render(request, 'complete_application.html', context)
+
+def edit_restaurant(request):
+    back_img = ui_elements.objects.all()
+    user = request.user
+    restaurant = get_object_or_404(Restaurant, owner_cafe=user)
+    
+    
+    if request.method == 'POST':
+        form = edit_restaurantForm(request.POST, instance=restaurant)
+
+        # if form.is_valid():
+        #     form.save()
+        # return redirect('complete/')
+    else:
+         form = edit_restaurantForm(request.POST,instance=Restaurant)
+    
+    
+    
+    
+    # if request.method == 'POST':
+    #     form = edit_restaurantForm(request.POST, instance=restaurant)
+
+    #     if form.is_valid():
+    #         form.save()
+    #     return redirect('complete/')
+    # else:
+    #     form = edit_restaurantForm(request.POST,instance=Restaurant)
+    context = {
+        'form': form,
+        "back_img":back_img,
+        "user":user,
+
+    }
+
+    return render(request, 'edit_restaurant.html', context)
+
+def complete(request):  
+    if request.method == 'POST':
+        form = edit_restaurantForm(request.POST, instance=restaurant)
+
+        if form.is_valid():
+            form.save()
+
+        else:
+            form = edit_restaurantForm(request.POST,instance=Restaurant)
+
+    return render(request,"complete_application.html",context)

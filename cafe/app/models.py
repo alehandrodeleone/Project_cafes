@@ -19,6 +19,7 @@ class Restaurant(models.Model):
     email = models.EmailField()
     phone = PhoneNumberField(null=True)
     owner_cafe=models.OneToOneField(User,on_delete=models.CASCADE,related_name="res",null=True)
+    to_publish=models.BooleanField(default=False)
 
 
     def __str__(self):

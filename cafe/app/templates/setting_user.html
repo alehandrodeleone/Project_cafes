@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/setting_userv3.css' %}">
+    <link rel='stylesheet' href="{% static 'css/setting_userv4.css' %}">
 </head>
 <body>
     <div class="container">
@@ -26,38 +26,27 @@
         </div>
     </div>  
 
-    {% comment %} <button class="custom-button">Зарегистрировать свой ресторан
-        {% for p in back_img %}
-    <img src="{{p.new_restaurant_setting_img.url}}" alt="Изображение" class="hover-image">
-    {% endfor %}
-    </button> {% endcomment %}
-    <button class="custom-button" onclick="register_new_restaurant()">Зарегистрировать свой ресторан
-        {% for p in back_img %}
-    <img src="{{p.new_restaurant_setting_img.url}}" alt="Изображение" class="hover-image">
-    {% endfor %}
-    </button>
-<script>
-    function register_new_restaurant(){
-        window.location.href = "{% url 'application_new_res' %}";
-    }
-</script>
 
-    <button class="custom-button">Редактировать свой ресторан
-        {% for p in back_img %}
-    <img src="{{p.edit_restaurant_setting_img.url}}" alt="Изображение" class="hover-image">
-    {% endfor %}
-    </button>
 
-    <button class="custom-button">Редактировать профиль
-        {% for p in back_img %}
-    <img src="{{p.user_setting_img.url}}" alt="Изображение" class="hover-image">
-    {% endfor %}
-    </button>
-    <button class="custom-button">Техподдержка
-        {% for p in back_img %}
-    <img src="{{p.support_setting_img.url}}" alt="Изображение" class="hover-image">
-    {% endfor %}
-    </button>
+    <div class="wrapper">
+        <a class="wrapper_txt" onclick="register_new_restaurant()">Зарегистрировать новый ресторан</a>
+      </div>
+      <script>
+        function register_new_restaurant(){
+            window.location.href = "{% url 'application_new_res' %}";
+        }
+    </script>
+
+    <div class="wrapper2">
+        <a class="wrapper_txt2" onclick="edit_my_restaurant()">Редактировать ресторан</a>
+      </div>
+      <script>
+        function edit_my_restaurant(){
+            window.location.href = "{% url 'edit_restaurant' %}";
+        }
+    </script>
+
+
 
 
 

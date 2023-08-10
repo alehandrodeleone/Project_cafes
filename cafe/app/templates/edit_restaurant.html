@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'css/edit_restaurantv4.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <div class="btn_logout">
+                <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
+                <div class="user_setting">
+                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{user}}</a>
+                </div>
+                {% endfor %}
+        </div>
+    
+    </div>
+
+
+<form method="post">
+    {% csrf_token %}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    
+    <h2 class="edit_restaurant_label">Редактировать</h2>
+
+
+    <h1 class="name_restaurant_label">Название ресторана</h2>
+    <div class="edit_name_restaurant" >
+        {{form.Name_restaurant}}
+    </div>
+
+    <h1 class="adress_label">Адрес</h1>
+    <div class="edit_Address">
+        {{form.Address}}
+    </div>
+
+    <h1 class="terrace_label">Терраса</h1>
+    <div class="edit_terrace_restaurant">
+        {{form.terrace_restaurant}}
+    </div>
+
+    <h1 class="parking_label">Паркинг</h1>
+    <div class="edit_parking_restaurant">
+        {{form.parking_restaurant}}
+    </div>
+
+    <h1 class="average_check_label">Средний чек</h1>
+    <div class="edit_average_check">
+        {{form.average_check}}
+    </div>
+
+    <h1 class="email_label">Email</h1>
+    <div class="edit_email">
+        {{form.email}}
+    </div>
+
+
+    <h1 class="phone_label">Телефон</h1>
+    <div class="edit_phone">
+        {{form.phone}}
+    </div>
+
+    <h1 class="photo_label">Загрузите фото</h1>
+    <div class="edit_photo_restaurant">
+        {{form.photo_restaurant}}
+    </div>
+
+    <h1 class="photo_label2">Загрузите фото</h1>
+    <div class="edit_photo_restaurant2">
+        {{form.photo_restaurant2}}
+    </div>
+
+    <h1 class="photo_label3">Загрузите фото</h1>
+    <div class="edit_photo_restaurant3">
+        {{form.photo_restaurant3}}
+    </div>
+    <h1 class="menu_label">Загрузите фото</h1>
+    <div class="edit_menu_download">
+        {{form.menu_download}}
+    </div>
+    <h1 class="about_label">Про заведение</h1>
+    <div class="edit_about">
+        {{form.about}}
+    </div>
+
+
+
+    <button  type="submit">Сохранить</button>
+</form>
+
+
+<div class="footer">
+    {% for i in back_img %}
+        <img class="footer_img" src="{{i.f_image.url}}">
+        <div class="footer_btn">
+            <h1 class="text_footer_dev">Про разработчика</h1>
+            <h1 class="text_footer_project"> О проекте</h1>
+            <h1 class="text_footer_telegram">Телеграм Бот</h1>
+            <h1 class="text_footer_api">API</h1>
+    {% endfor %}
+</div> 
+</body>
+</html>

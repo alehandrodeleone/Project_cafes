@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/homev15.css' %}">
+<link rel='stylesheet' href="{% static 'css/homev17.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Title</title>
@@ -99,7 +99,12 @@
         required>
         <label class="people_booking_text" for="input-field">Мест:</label>
         <input class="people_booking" type="text" id="input-field" name="input-people_booking" maxlength=1>
-        <input class="booking_btn" type="submit" value="Забронировать">
+        {% comment %} <input class="booking_btn" type="submit" value="Забронировать"> {% endcomment %}
+
+        <button class="booking_btn" type="submit" >
+            <span class="button-text">Забронировать</span>
+            <div class="fill-container"></div>
+          </button>
     </form>
 
 
@@ -112,13 +117,28 @@
 
     </div>
 
-    </div>
-            <div class="download_m">
-        {% for r in page %}
-            <a class="download_menu" href="{{ r.menu_download.url }}" target="_blank">Открыть меню</a>
-        {% endfor %}
-    </div>
-        </div>
+
+
+
+      
+
+
+      {% for r in page %}
+      <a href="{{ r.menu_download.url }}">
+          <button class="download_menu">
+              <span class="button-text">Открыть меню</span>
+              <div class="fill-container"></div>
+          </button>
+      </a>
+  {% endfor %}
+
+
+
+
+
+
+
+
 
 
     <div class="previous">
@@ -129,7 +149,6 @@
         {% endif %}
     </div>
 
-            </div>
     <div class="next_p">
         {% if page.has_next %}
         {% for r in page %}

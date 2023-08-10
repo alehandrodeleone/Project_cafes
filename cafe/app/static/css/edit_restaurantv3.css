@@ -1,0 +1,302 @@
+.edit_restaurant_label{
+    position: absolute;
+    left: 42%;
+    top:5% ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.name_restaurant_label{
+    position: absolute;
+    left: 32%;
+    top:12%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+
+}
+
+.edit_name_restaurant{
+    position: absolute;
+    left: 32%;
+    top: 16%;
+}
+
+.adress_label{
+    position: absolute;
+    left: 32%;
+    top: 20%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_Address{
+    position: absolute;
+    left: 32%;
+    top: 24%;
+
+}
+.terrace_label{
+    position: absolute;
+    left: 32%;
+    top: 28%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+
+.edit_terrace_restaurant{
+    position: absolute;
+    left: 32%;
+    top:32%;
+}
+
+.parking_label{
+    position: absolute;
+    left: 32%;
+    top: 36%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+
+.edit_parking_restaurant{
+    position: absolute;
+    left: 32%;
+    top: 40%;
+}
+
+.average_check_label{
+    position: absolute;
+    left: 32%;
+    top: 44%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+
+.edit_average_check{
+    position: absolute;
+    left: 32%;
+    top: 48%;
+}
+
+.email_label{
+    position: absolute;
+    left: 32%;
+    top: 52%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_email{
+    position: absolute;
+    left: 32%;
+    top: 56%;
+}
+
+.phone_label{
+    position: absolute;
+    left: 32%;
+    top: 60%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+
+.edit_phone{
+    position:absolute ;
+    left: 32%;
+    top: 64%;
+}
+
+
+
+
+
+.photo_label{
+    position: absolute;
+    left: 46%;
+    top: 12%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_photo_restaurant{
+    position: absolute;
+    left: 46%;
+    top:16% ;
+}
+
+.photo_label2{
+    position: absolute;
+    left: 46%;
+    top: 20%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_photo_restaurant2{
+    position: absolute;
+    left: 46%;
+    top:24% ;
+}
+
+.photo_label3{
+    position: absolute;
+    left: 46%;
+    top: 28%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_photo_restaurant3{
+    position: absolute;
+    left: 46%;
+    top:32% ;
+}
+
+.menu_label{
+    position: absolute;
+    left: 46%;
+    top: 36%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_menu_download{
+    position: absolute;
+    left: 46%;
+    top:40% ;
+}
+.about_label{
+    position: absolute;
+    left: 46%;
+    top: 44%;
+    font-size: 14px;
+    font-family:'Roboto', sans-serif ;
+}
+.edit_about{
+    position: absolute;
+    left: 46%;
+    top:48% ;
+}
+
+
+button {
+    position: absolute;
+    background: #FBD148;
+    box-sizing: border-box;
+    left: 42%;
+    top: 82%;
+    border: 0;
+    outline: 0;
+    padding: 1rem 3rem;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .25s ease;
+  }
+  
+  button::before {
+    position: absolute;
+    content: '';
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    transform: translate(-5px, -5px);
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(84, 84, 84);
+    transition: .25s ease;
+  }
+  
+  button:hover {
+    transform: translate(-5px, -5px);
+  }
+  
+  button:hover::before {
+    transform: translate(5px, 5px);
+  }
+
+  /* /////////////////////////////////////////////////////////////////// */
+
+  *{
+    margin: 0;
+    padding: 0;
+}
+/* /////////////////////////////////////////////////HDR///////////////////////////////////// */
+body{
+    background: #ffffff;
+}
+
+.container {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container .headers{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 64px;
+    width: 100%;
+}
+
+.container .ico_setting_headers{
+    position: absolute;
+    margin:0;
+    height: 20px;
+    width: 20px;
+    right: 220px;
+    top: 22px;
+
+}
+
+
+.container .icoheaders{
+    position: absolute;
+    margin:0;
+    height: 16;
+    width: 16;
+    top: 14px;
+    left: 32px;
+}
+
+
+
+.container .btn_logout{
+    position: absolute;
+    margin-right: 0em;
+    margin-left: 0em;
+    right: 32px;
+    top: 22px;
+}
+
+.container .btn_logout .btn_logout_txt{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container .user_setting{
+    position: absolute;
+    margin-right: 0em;
+    margin-left: 0em;
+    right: 132px;
+    top: 0px;
+
+}
+
+.container .user_setting .user_btn{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+.container .btn_a_txt:hover {
+    color: #a8dfffb9;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+.container .btn_r_txt:hover {
+    color: #a8dfffb9;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+

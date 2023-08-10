@@ -4,6 +4,7 @@ from .models import Restaurant,ui_elements,booking,application_new_restaurant,in
 class adminRestaurant(admin.ModelAdmin):
     list_display = ['id', "owner_cafe",'Name_restaurant','rating','kitchen','average_check','photo_restaurant',
                     'photo_restaurant2','photo_restaurant3','menu_download','email',"phone"]
+    list_filter = ["owner_cafe","rating","to_publish"]
 @admin.register(ui_elements)
 class adminui(admin.ModelAdmin):
     list_display = ['id','background','header',"ico_header"]
