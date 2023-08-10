@@ -181,45 +181,30 @@ def edit_restaurant(request):
     back_img = ui_elements.objects.all()
     user = request.user
     restaurant = get_object_or_404(Restaurant, owner_cafe=user)
-    
-    
     if request.method == 'POST':
-        form = edit_restaurantForm(request.POST, instance=restaurant)
-
-        # if form.is_valid():
-        #     form.save()
-        # return redirect('complete/')
+        initial_data = {'to_publish': False}
+        form = edit_restaurantForm(request.POST, instance=restaurant,initial=initial_data)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.to_publish = False
+            instance.save()
+            form.save()
+        return redirect('complete_page')
     else:
-         form = edit_restaurantForm(request.POST,instance=Restaurant)
-    
-    
-    
-    
-    # if request.method == 'POST':
-    #     form = edit_restaurantForm(request.POST, instance=restaurant)
-
-    #     if form.is_valid():
-    #         form.save()
-    #     return redirect('complete/')
-    # else:
-    #     form = edit_restaurantForm(request.POST,instance=Restaurant)
+        form = edit_restaurantForm(request.POST,instance=Restaurant)
     context = {
         'form': form,
         "back_img":back_img,
         "user":user,
-
     }
-
     return render(request, 'edit_restaurant.html', context)
 
-def complete(request):  
-    if request.method == 'POST':
-        form = edit_restaurantForm(request.POST, instance=restaurant)
+def complete_html(request):
 
-        if form.is_valid():
-            form.save()
+    user = request.user
+   
+    context = {
+               "user": user
+               }
 
-        else:
-            form = edit_restaurantForm(request.POST,instance=Restaurant)
-
-    return render(request,"complete_application.html",context)
+    return render(request, 'complete_application.html', context)
