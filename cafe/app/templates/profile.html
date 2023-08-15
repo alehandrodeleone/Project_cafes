@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/setting_userv5.css' %}">
+    <link rel='stylesheet' href="{% static 'css/profilev4.css' %}">
 </head>
 <body>
     <div class="container">
@@ -18,57 +17,42 @@
             <a href={% url 'start_page' %}  >
                 <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
                 </a>
-
             <div class="btn_logout">
                 <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
                 <div class="user_setting">
-                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{user}}</a>
+                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{ user}}</a>
                 </div>
                 {% endfor %}
         </div>
-    </div>  
+    </div>   
+
+<h2 class="profile_label">Персональные данные</h2>
+<h1 class="label_login">Логин:<h1>
+<h1 class="login">{{user}}</h1>
+<h1 class="name_label">Имя:</h1>
+<h1 class="name">{{user.first_name}}</h1>
+<h1 class="last_name_label">Фамилия:</h1>
+<h1 class="last_name">{{user.last_name}}</h1>
+<h1 class="email_label">email:</h1>
+<h1 class="email">{{user.email}}</h1>
+<h1 class="date_registration_label">Регистрация:</h1>
+<h1 class="date_registration">{{user.date_joined}}</h1>
+<h2 class="message_label">Уведомления</h2>
 
 
 
-    <div class="wrapper">
-        <a class="wrapper_txt" onclick="register_new_restaurant()">Зарегистрировать новый ресторан</a>
-      </div>
-      <script>
-        function register_new_restaurant(){
-            window.location.href = "{% url 'application_new_res' %}";
-        }
-    </script>
+<body>
+  <div class="scrollable-container">
+    {% for post in profile %}
+        <h1 class="head">{{ post.heading }}<h1>
+      <h1 class="message">{{ post.Message }}</h1>
+    {% endfor %}
+  </div>
+</body>
+</html>
 
-    <div class="wrapper2">
-        <a class="wrapper_txt2" onclick="edit_my_restaurant()">Редактировать ресторан</a>
-      </div>
-      <script>
-        function edit_my_restaurant(){
-            window.location.href = "{% url 'edit_restaurant' %}";
-        }
-    </script>
+  
 
-
-    <div class="wrapper3">
-        <a class="wrapper_txt3" onclick="profile()">Профиль и почта</a>
-      </div>
-      <script>
-        function profile(){
-            window.location.href = "{% url 'profile' %}";
-        }
-    </script>
-
-
-    <div class="wrapper4">
-        <a class="wrapper_txt4" onclick="support()">Техническая поддержка</a>
-      </div>
-      <script>
-        function support(){
-            window.location.href = "{% url 'support' %}";
-        }
-    </script>
-
-    
 
             <div class="footer">
                 {% for i in back_img %}

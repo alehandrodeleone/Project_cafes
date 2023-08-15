@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .forms import *
+from django.contrib import messages
 
 
 def start_page(request):
@@ -60,7 +61,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('success/')  # Перенаправление на страницу успешной регистрации
+            return redirect('login')  # Перенаправление на страницу успешной регистрации
     else:
         form = RegistrationForm()
 
@@ -86,7 +87,8 @@ def login_view(request):
             login(request, user)
             return redirect('user_page')
         else:
-            return HttpResponse('Invalid login credentials')
+            messages.error(request, 'Неверный логин или пароль')
+            return redirect('login')
     return render(request, 'authorization.html', context)
 
 
@@ -181,6 +183,7 @@ def edit_restaurant(request):
     back_img = ui_elements.objects.all()
     user = request.user
     restaurant = get_object_or_404(Restaurant, owner_cafe=user)
+    info=info_text.objects.filter(id=2)
     if request.method == 'POST':
         initial_data = {'to_publish': False}
         form = edit_restaurantForm(request.POST, instance=restaurant,initial=initial_data)
@@ -196,8 +199,64 @@ def edit_restaurant(request):
         'form': form,
         "back_img":back_img,
         "user":user,
+        "info":info
     }
     return render(request, 'edit_restaurant.html', context)
+
+
+
+def profile_and_mail(request):
+  
+    user = request.user
+
+    message_info = message.objects.filter(message_user=user)  # Получаем информацию о ресторанах
+
+    back_img = ui_elements.objects.all()
+
+    context = {
+        "user": user,
+        "back_img": back_img,
+        "profile": message_info
+    }
+    
+    return render(request, "profile.html", context)
+
+def support(request):
+    user=request.user
+    back_img = ui_elements.objects.all()
+    message_support=support_message.objects.all()
+    info=info_text.objects.filter(id=3)
+    form = support_messageForm(request.POST)
+    if request.method == 'POST':
+        form = support_messageForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)#commit=False позволяет создать экземпляр модели, но не сохранять его.
+            instance.application_user = user # Присваиваем текущего пользователя полю "application_user"
+            instance.save()#instance - это переменная, которая содержит созданный экземпляр модели и позволяет вам выполнять дополнительные действия с ним перед сохранением в базе данных.
+            return redirect('complete_page') 
+        else:
+            form = support_messageForm()
+        
+    context = {
+        "info":info,
+        "user": user,
+        "back_img": back_img,
+        "message": message_support,
+        'form': form,
+    }
+
+    return render(request,"support.html",context)
+
+
+
+
+
+
+
+
+
+
+
 
 def complete_html(request):
 

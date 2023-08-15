@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/reg_new_userv6.css' %}">
+<link rel='stylesheet' href="{% static 'css/reg_new_userv7.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 
@@ -17,11 +17,14 @@
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <a href={% url 'start_page' %} >
+              <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+              </a>
             <div class="btn_autorization">
-                <h1 class="btn_a_txt">Авторизация</h1>
+                <a href={% url 'login' %}  class="btn_a_txt" style="text-decoration: none;">Авторизация</a>
                 {% endfor %}
             </div>
+
 
     <form method="post">
       {% csrf_token %}
@@ -65,12 +68,14 @@
         </div>
 
 
+      </div>
+
+      <button class="booking_btn" type="submit" >
+        <span class="button-text">Регистрация</span>
+        <div class="fill-container"></div>
+      </button>
 
 
-
-
-        <input class="booking_btn" type="submit" value="Зарегистрировать">
-      {% comment %} <button type="submit" class="btn_reg">Зарегистрироваться</button> {% endcomment %}
     </form>
 
 

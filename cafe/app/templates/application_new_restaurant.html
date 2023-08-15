@@ -16,8 +16,9 @@
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <img class='icoheaders' src="{{i.ico_header.url}}" >
-            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <a href={% url 'start_page' %} >
+              <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+              </a>
             <div class="btn_logout">
                 <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
                 <div class="user_setting">
@@ -116,26 +117,3 @@
 
 
 
-{% comment %} <h1 class="load_file1_label">Загрузите заполененную форму</h1>
-<form id="myForm">
-  <input type="file" id="myFile" name="myfile" class="loadfile_1">
-  <button type="button" onclick="uploadFile()">Загрузить</button>
-</form>
-
-<h1 class="load_file2_label">Загрузите какой-то документ</h1>
-<form id="myForm">
-  <input type="file" id="myFile" name="myfile" class="loadfile_2">
-  <button type="button" onclick="uploadFile()">Загрузить</button>
-</form>
-
-<h1 class="load_file3_label">Загрузите какой-то документ</h1>
-<form id="myForm">
-  <input type="file" id="myFile" name="myfile" class="loadfile_3">
-  <button type="button" onclick="uploadFile()">Загрузить</button>
-</form>
-
-<h1 class="load_file4_label">Загрузите какой-то документ</h1>
-<form id="myForm">
-  <input type="file" id="myFile" name="myfile" class="loadfile_4">
-  <button type="button" onclick="uploadFile()">Загрузить</button>
-</form> {% endcomment %}

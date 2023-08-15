@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/homev17.css' %}">
+    <link rel='stylesheet' href="{% static 'css/homev18.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Title</title>
@@ -17,7 +17,9 @@
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <img class='icoheaders' src="{{i.ico_header.url}}" >
+            <a href={% url 'start_page' %}  >
+            <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+            </a>
             <div class="btn_autorization" >
                 <form id="autorization_form" action="{% url 'login' %}">
                 <a href={% url 'login' %} class="btn_a_txt" style="text-decoration: none;" >Авторизация</a>
@@ -99,15 +101,13 @@
         required>
         <label class="people_booking_text" for="input-field">Мест:</label>
         <input class="people_booking" type="text" id="input-field" name="input-people_booking" maxlength=1>
-        {% comment %} <input class="booking_btn" type="submit" value="Забронировать"> {% endcomment %}
+
 
         <button class="booking_btn" type="submit" >
             <span class="button-text">Забронировать</span>
             <div class="fill-container"></div>
           </button>
     </form>
-
-
 
     <div class="about_r">
         {% for r in page %}
@@ -119,40 +119,31 @@
 
 
 
-
-      
-
-
-      {% for r in page %}
-      <a href="{{ r.menu_download.url }}">
-          <button class="download_menu">
-              <span class="button-text">Открыть меню</span>
-              <div class="fill-container"></div>
-          </button>
-      </a>
-  {% endfor %}
+{% for r in page %}
 
 
+<button class="button" >
 
+    <a class="button-text" href={{ r.menu_download.url }}>Открыть меню</a>
+    <div class="fill-container"></div>
 
-
-
-
+    </button>
+{% endfor %} 
 
 
 
     <div class="previous">
         {% if page.has_previous%}
         {% for r in page %}
-            <a class="previous_page" href="?page={{page.previous_page_number}}" >Назад</a>
+            <a class="previous_page" href="?page={{page.previous_page_number}}" style="text-decoration: none;" >Назад</a>
         {% endfor %}
         {% endif %}
     </div>
 
-    <div class="next_p">
+    <div class="next_page">
         {% if page.has_next %}
         {% for r in page %}
-            <a class="next_page" href="?page={{page.next_page_number}}" >Вперед</a>
+            <a class="next_page" href="?page={{page.next_page_number}}" style="text-decoration: none;">Вперед</a>
 
         {% endfor %}
         {% endif %}

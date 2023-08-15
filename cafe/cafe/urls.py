@@ -6,7 +6,7 @@ from app.views import start_page,save_data,\
     register,login_view,\
     user_page,setting_user,\
     application_new_res,save_application,\
-    edit_restaurant,complete_html
+    edit_restaurant,complete_html,profile_and_mail,support
 
 
 
@@ -22,7 +22,10 @@ urlpatterns = [
     path("application_new_res",application_new_res,name='application_new_res'),
     path('save_application/', save_application, name='save_application_send'),
     path('edit_restaurant/',edit_restaurant, name="edit_restaurant"),
-    path("complete_page/",complete_html,name="complete_page")
+    path("complete_page/",complete_html,name="complete_page"),
+    path("profile/",profile_and_mail, name="profile"),
+    path("support/",support,name="support")
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Restaurant,ui_elements,booking,application_new_restaurant,info_text
+from .models import Restaurant,ui_elements,booking,application_new_restaurant,info_text,message,support_message
+
 @admin.register(Restaurant)
 class adminRestaurant(admin.ModelAdmin):
     list_display = ['id', "owner_cafe",'Name_restaurant','rating','kitchen','average_check','photo_restaurant',
@@ -24,3 +25,16 @@ class admin_application_new_restaurant(admin.ModelAdmin):
 @admin.register(info_text)
 class admin_info_text(admin.ModelAdmin):
     list_display = ["id","info_text_2"]
+    
+    
+
+
+@admin.register(message)
+class adminmessage(admin.ModelAdmin):
+    list_display = ['id','message_user','heading','heading']
+    list_filter = ["message_user"]
+
+@admin.register(support_message)
+class support_message_admin(admin.ModelAdmin):
+    list_display = ['id',"application_user","message"]
+    list_filter = ["application_user"]

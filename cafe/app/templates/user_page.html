@@ -9,14 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/user_pagev5.css' %}">
+    <link rel='stylesheet' href="{% static 'css/user_pagev6.css' %}">
 </head>
 <body>
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <img class='icoheaders' src="{{i.ico_header.url}}" >
-            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <a href={% url 'start_page' %}  >
+                <img class='icoheaders' src="{{i.ico_header.url}}" >
+                </a>
             <div class="btn_logout">
                 <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
                 <div class="user_setting">
@@ -116,19 +117,19 @@
 
 
 
-    <div class="previous">
+    <div class="previous_page">
         {% if user_page.has_previous%}
         {% for r in user_page %}
-            <a class="previous_page" href="?user_page={{user_page.previous_page_number}}" >Назад</a>
+            <a class="previous_page" href="?user_page={{user_page.previous_page_number}}"style="text-decoration: none;" >Назад</a>
         {% endfor %}
         {% endif %}
     </div>
     
             </div>
-    <div class="next_p">
+    <div class="next_page">
         {% if user_page.has_next %}
         {% for r in user_page %}
-            <a class="next_page" href="?user_page={{user_page.next_page_number}}" >Вперед</a>
+            <a class="next_page" href="?user_page={{user_page.next_page_number}}"style="text-decoration: none;" >Вперед</a>
     
         {% endfor %}
         {% endif %}

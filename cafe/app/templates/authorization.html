@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/authv2.css' %}">
+<link rel='stylesheet' href="{% static 'css/authv4.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 </head>
@@ -16,9 +16,9 @@
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <img class='icoheaders' src="{{i.ico_header.url}}" >
-
-
+            <a href={% url 'start_page' %}  >
+                <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+                </a>
     <div class="btn_registration">
         <form id="registration_form" action="{% url 'register' %}">
             <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
@@ -34,6 +34,13 @@
 
             {% endfor %}
         </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 
         <h2 class="label_authorization">Авторизация</h2>
@@ -45,7 +52,12 @@
         <h1 for="password" class="password_auth">Пароль:<h1>
         <input type="password" id="password" name="password" class="input_password">
         <br>
-        <input type="submit" value="Авторизоваться" class="btn_auth">
+
+        <button class="booking_btn" type="submit" >
+            <span class="button-text">Авторизоваться</span>
+            <div class="fill-container"></div>
+          </button>
+       
     </form>
 
 

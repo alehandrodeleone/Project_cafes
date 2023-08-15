@@ -1,0 +1,280 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* /////////////////////////////////////////////////HDR///////////////////////////////////// */
+body{
+    background: #ffffff;
+}
+
+.container {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container .headers{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 64px;
+    width: 100%;
+}
+
+.container .ico_setting_headers{
+    position: absolute;
+    margin:0;
+    height: 20px;
+    width: 20px;
+    right: 220px;
+    top: 22px;
+
+}
+
+
+.container .icoheaders{
+    position: absolute;
+    margin:0;
+    height: 16;
+    width: 16;
+    top: 14px;
+    left: 32px;
+}
+
+
+
+.container .btn_logout{
+    position: absolute;
+    margin-right: 0em;
+    margin-left: 0em;
+    right: 32px;
+    top: 22px;
+}
+
+.container .btn_logout .btn_logout_txt{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container .user_setting{
+    position: absolute;
+    margin-right: 0em;
+    margin-left: 0em;
+    right: 132px;
+    top: 0px;
+
+}
+
+.container .user_setting .user_btn{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+.container .btn_a_txt:hover {
+    color: #a8dfffb9;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+.container .btn_r_txt:hover {
+    color: #a8dfffb9;
+    transition: 0.2s linear;
+    cursor: pointer;
+}
+
+
+
+
+/* /////////////////////////////////////////////////FTR/////////////////////////////////// */
+
+
+.footer {
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    height: 80px; /* высота футера */
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.footer .footer_img{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    width: 100%;
+}
+
+.footer .footer_btn .text_footer_dev{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 32px;
+    top: 16px;
+    cursor: pointer;
+}   
+
+.footer .footer_btn .text_footer_project{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 32px;
+    top: 32px;
+    cursor: pointer;
+}   
+
+.footer .footer_btn .text_footer_telegram{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 32px;
+    top: 48px;
+    cursor: pointer;
+}   
+
+.footer .footer_btn .text_footer_api{
+    position: absolute;
+    font-size: 10px;
+    font-family: 'Roboto Light 300', sans-serif;
+    color: white;
+    left: 152px;
+    top: 16px;
+    cursor: pointer;
+}   
+/* ////////////////////////////////////////////////////////// */
+
+.profile_label{
+    position: absolute;
+    left: 5%;
+    top: 17%;
+    font-size: 20px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+.label_login{
+    position: absolute;
+    left: 5%;
+    top:22%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+
+.login{
+    position: absolute;
+    left: 10%;
+    top: 22%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.name_label{
+    position: absolute;
+    left: 5%;
+    top: 25%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.name{
+    position: absolute;
+    left: 10%;
+    top:25% ;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.last_name_label{
+    position: absolute;
+    left: 5%;
+    top: 28%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.last_name{
+    position: absolute;
+    left: 10%;
+    top:28% ;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.email_label{
+    position: absolute;
+    left: 5%;
+    top: 31%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.email{
+    position: absolute;
+    left: 10%;
+    top:31% ;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+.date_registration_label{
+    position: absolute;
+    left: 5%;
+    top:34%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+
+
+.date_registration{
+    position: absolute;
+    left: 10%;
+    top: 34%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+
+}
+
+
+/* ///////////////////////////////////////////// */
+.head{
+    margin-top: 4%;
+    font-size: 14px;
+    font-family: 'Roboto Light 300', sans-serif;
+}
+.message{
+    margin-top: 1.5%;
+    font-size: 12px;
+    font-family: 'Roboto Light 300', sans-serif;
+    width: 500px;
+    word-wrap: break-word;
+
+}
+.message_label{
+    position: absolute;
+    font-size: 20px;
+    font-family: 'Roboto Light 300', sans-serif;
+    right:25.5%;
+    top: 17%;
+}
+.scrollable-container {
+    position: absolute;
+    right: 1%;
+    top: 22%;
+    width: 600px;
+    height: 600px;
+    overflow: scroll; /* Используйте auto вместо scroll */
+    overflow-x: hidden; 
+    
+  }

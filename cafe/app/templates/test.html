@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+    {% for post in profile %}
+    <h2>{{ post.heading }}</h2>
+    <p>{{ post.Message }}</p>
+
+{% endfor %}
+  
+<div class="pagination">
+    <span class="step-links">
+        {% if profile.has_previous %}
+            <a href="?profile_page=1">&laquo; первая</a>
+            <a href="?profile_page={{ profile.previous_page_number }}">предыдущая</a>
+        {% endif %}
+
+        <span class="current-page">{{ profile.number }}</span>
+
+        {% if profile.has_next %}
+            <a href="?profile_page={{ profile.next_page_number }}">следующая</a>
+            <a href="?profile_page={{ profile.paginator.num_pages }}">последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+
+
+</body>
+</html>

@@ -8,15 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/edit_restaurantv4.css' %}">
+    <link rel='stylesheet' href="{% static 'css/edit_restaurantv5.css' %}">
 </head>
 <body>
 
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <img class='icoheaders' src="{{i.ico_header.url}}" >
-            <img class='ico_setting_headers' src="{{i.ico_setting_header.url}}" >
+            <a href={% url 'start_page' %} >
+                <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+                </a>
             <div class="btn_logout">
                 <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
                 <div class="user_setting">
@@ -27,6 +28,12 @@
     
     </div>
 
+    <h2 class="info_label"> Уважаемый пользователь</h2>
+{% for i in info %}
+    <div class="info">
+        {{i.info_text_1}}
+      </div>
+     {% endfor %}
 
 <form method="post">
     {% csrf_token %}

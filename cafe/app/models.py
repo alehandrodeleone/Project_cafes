@@ -3,6 +3,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
 
 
+
+
+
 class Restaurant(models.Model):
     Name_restaurant = models.CharField(max_length=15)
     Address = models.CharField(max_length=25)
@@ -63,3 +66,13 @@ class info_text(models.Model):
 
 
 
+
+
+class message(models.Model):
+    message_user=models.ForeignKey(User,on_delete=models.CASCADE)
+    heading=models.CharField(max_length=25)
+    Message=models.TextField(max_length=400)
+
+class support_message(models.Model):
+    application_user=models.ForeignKey(User,on_delete=models.CASCADE)
+    message=models.TextField(max_length=800)
