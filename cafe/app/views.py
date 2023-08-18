@@ -1,4 +1,3 @@
-
 from .models import *
 from django.shortcuts import render,redirect,get_object_or_404
 from django.core.paginator import Paginator
@@ -8,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .forms import *
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 
 def start_page(request):
@@ -23,7 +23,6 @@ def start_page(request):
                }
     return render(request, "home_page.html", context)
 
-
 def save_data(request):
     previous_url = request.META.get('HTTP_REFERER')#ПОЛУЧЕНИЕ ПРЕДЫДУЩЕЙ СТРАНИЦЫ ДЛЯ ПЕРЕДАЧИ ЕЕ В АДРЕС ДЛЯ ПОСЛЕДУЮЩЕЙ ПАГИНАЦИИ
     print(previous_url)
@@ -38,17 +37,13 @@ def save_data(request):
     h2_list = soup.find('h2', {'class': 'name_restaurant'}).text# ИЩЕМ НЕОБХОДИМУЮ ИНФОРМАЦИЮ
     # РЕАЛИЗАЦИЯ ПАРСЕРА ВМЕСТО ЗАПРОСОВ REQUEST
 
-
     if request.method == 'POST':#ПОЛУЧАЕМ ИНФОРМАЦИЮ ИЗ HTML ЗАПРОСОВ
         input1 = request.POST.get('input-booking')
         input2 = request.POST.get('input-number_booking')
         input3 = request.POST.get('input-people_booking')
-
         a = booking(name=input1, number=input2, places=input3, restaurant=h2_list)# сохранение данных из инпутов в модель джанго
         a.save()
-
         return HttpResponseRedirect(request.path_info)
-
     return render(request, 'complete.html', context)
 
 
@@ -64,15 +59,13 @@ def register(request):
             return redirect('login')  # Перенаправление на страницу успешной регистрации
     else:
         form = RegistrationForm()
-
     context={
         'form': form,
         'back_img': back_img,
-
     }
     return render(request, 'Registration_new_user.html', context)
 
-from django.contrib.auth import authenticate, login
+
 
 def login_view(request):
     back_img = ui_elements.objects.all()
@@ -91,8 +84,6 @@ def login_view(request):
             return redirect('login')
     return render(request, 'authorization.html', context)
 
-
-
 def user_page(request):
     page_number = int(request.GET.get('user_page', 1))  # СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
     restaurant_info = Restaurant.objects.filter(to_publish=True)  # Получаем информацию о ресторанах
@@ -105,7 +96,6 @@ def user_page(request):
         "user_login":user.username,
         "user_page":page
     }
-
     return render(request,"user_page.html",context)
 
 
@@ -118,10 +108,7 @@ def setting_user(request):
         "user":user,
         "res":res,
     }
-
     return render(request,"setting_user.html",context)
-
-
 def application_new_res(request):
     back_img = ui_elements.objects.all()
     user = request.user
@@ -133,8 +120,6 @@ def application_new_res(request):
         "user":user,
         "info":info
     }
-
-
     return render (request,"application_new_restaurant.html",context)
 
 def save_application(request):
@@ -149,7 +134,6 @@ def save_application(request):
                "user": user,
                "application":application
                }
-
     if request.method == 'POST':#ПОЛУЧАЕМ ИНФОРМАЦИЮ ИЗ HTML ЗАПРОСОВ
         input1 = request.POST.get('name_restaurant_input')
         input2 = request.FILES.get('myfile1')
@@ -171,7 +155,6 @@ def save_application(request):
         input18 = request.FILES.get('menu_download')
         a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4,document3=input5)# сохранение данных из инпутов в модель джанго
         a.save()
-
         b = Restaurant(Name_restaurant=input6,Address=input7,terrace_restaurant=input8,parking_restaurant=input9,
                      kitchen=input10,average_check=input11,email=input12,phone=input13,about=input14,photo_restaurant=input15,
                      photo_restaurant2=input16,photo_restaurant3=input17,menu_download=input18)
@@ -203,22 +186,15 @@ def edit_restaurant(request):
     }
     return render(request, 'edit_restaurant.html', context)
 
-
-
 def profile_and_mail(request):
-  
     user = request.user
-
     message_info = message.objects.filter(message_user=user)  # Получаем информацию о ресторанах
-
     back_img = ui_elements.objects.all()
-
     context = {
         "user": user,
         "back_img": back_img,
         "profile": message_info
     }
-    
     return render(request, "profile.html", context)
 
 def support(request):
@@ -236,7 +212,6 @@ def support(request):
             return redirect('complete_page') 
         else:
             form = support_messageForm()
-        
     context = {
         "info":info,
         "user": user,
@@ -244,26 +219,58 @@ def support(request):
         "message": message_support,
         'form': form,
     }
-
     return render(request,"support.html",context)
 
-
-
-
-
-
-
-
-
-
-
-
 def complete_html(request):
-
     user = request.user
-   
     context = {
                "user": user
                }
-
     return render(request, 'complete_application.html', context)
+
+# //////////////////////////////////////////////////////////API//////////////////////////////////////////////////////////////
+from .serializers import RestaurantSerializer,New_RestaurantSerializer
+from rest_framework.generics import RetrieveAPIView,ListAPIView
+from rest_framework.viewsets import ViewSet,ModelViewSet
+from rest_framework.pagination import LimitOffsetPagination
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializers import UserSerializer
+from rest_framework.permissions import IsAuthenticated
+from .permissions import ownerPermissions
+
+
+
+
+# /////////////////////////////////////////
+class RESTAURANT(ListAPIView):# Получение списков ресторанов
+    queryset = Restaurant.objects.all()#список обьектов
+    serializer_class = RestaurantSerializer # то с помощью чего мы превращаем список обьектов в json
+    filterset_fields=['Name_restaurant',"Address","rating","about",'terrace_restaurant',
+                'parking_restaurant','kitchen','average_check','email',"phone",'to_publish']#список для фильтрации
+    pagination_class = LimitOffsetPagination
+# /////////////////////////////////////////
+
+class NEW_RESTAURANT(ModelViewSet):# Добавление нового ресторана
+    queryset = Restaurant.objects.all()
+    serializer_class = New_RestaurantSerializer
+    permission_classes = [IsAuthenticated,ownerPermissions]# пользователь дожен быть авторизован по токену и иметь доступ 
+    def perform_create(self, serializer):#функция создания записи от лица авторизованного по токену
+        serializer.save(owner_cafe=self.request.user)
+
+
+
+class Search_RESTAURANT(RetrieveAPIView):#Поиск ресторана по id
+    queryset = Restaurant.objects.all()
+    serializer_class = New_RestaurantSerializer
+
+
+
+class UserCreateView(generics.CreateAPIView):#создание нового юзера
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+
+
+

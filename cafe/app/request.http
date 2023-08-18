@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/api/
+###
+POST  http://127.0.0.1:8000/admin_edit_restaurant/
+Content-Type: application/json
+{
+   "Name_restaurant": "rara",
+    "Address": "ita street 142",
+
+}
+
+###
+GET   http://127.0.0.1:8000/new_restaurant/4/
+Content-Type: application/json
+Authorization: Token 4b23aa52e39598418f0dcac6d5ee04a2425ed00e
+
+
+
+
+# {
+#     "Name_restaurant": "Luigi23228",
+#     "Address": "ita street 142",
+#     "rating": 5,"about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada purus ac tellus ultricies, sit amet consequat sem dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut eu vehicula mi. Cras lacinia nisi at semper fermentum. Donec auctor commodo ultrices. Nullam vestibulum odio ac erat facilisis eleifend. Curabitur aliquet massa eu elit",
+#     "terrace_restaurant": "Есть",
+#     "parking_restaurant": "Есть",
+#     "kitchen": "italian",
+#     "average_check": 4000,
+#     "email": "mahnoho@gmail.com",
+#     "phone": "+79131988602"}
+###

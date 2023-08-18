@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+
+import rest_framework.authentication
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "app",
     "phonenumber_field",
+    'rest_framework',
+    'django_filters',
+    'rest_framework.authtoken'# специальное приложение которое добавляет модель которая содержит создание токена
+    # и проверку на соответствие между токеном и пользователем,после добавления необходимо применить миграцию
     
 ]
 
@@ -135,3 +142,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PHONENUMBER_DB_FORMAT = 'E164'
 PHONENUMBER_DEFAULT_REGION = 'RU' # eg: 'BN'
+
+REST_FRAMEWORK={
+    'DEFAULT_FILTER_BACKENDS':[
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",#ТО ЧТО ОТВЕЧАЕТ ЗА ПАГИНАЦИЮ REST ЗАПРОСОВ
+    "PAGE_SIZE":3,#КОЛИЧЕСТВО ЗАПИСЕЙ НА ОДНОЙ СТРАНИЦЕ ЗАПРОСА JSON
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+        'rest_framework.authentication.TokenAuthentication'#данный параметр отвечает за выбранный метод аутентификации
+                                      ],
+    "DEFAULT_THROTTLE_CLASSES":["rest_framework.throttling.UserRateThrottling"],# ограничение на запросы авторизованного юзера, анонимного юзера : rest_framework.throttling.AnonRateThrottling
+    "DEFAULT_THROTTLE_RATES":{"user":"10/minute"}
+
+
+}
+# указываем стандартные настройки фильтрации для api запросов
