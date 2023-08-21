@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{%load static %}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/api_page_2v3.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <a href={% url 'start_page' %}  >
+                <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+                </a>
+    <div class="btn_registration">
+        <form id="registration_form" action="{% url 'register' %}">
+            <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
+        </form>
+    </div>
+
+
+    <script>
+        function submitForm() {
+            document.getElementById("registration_form").submit();
+        }
+    </script>
+
+            {% endfor %}
+        </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+<h2 class="new_restaurant_post_label">Добавление вашего заведения в базу данных</h2>
+<h1 class="info_post_new_restaurant">
+
+    <p>Что бы добавить ваше заведение вы должны иметь токен</p>
+    <p>Как получить токен читайте на предыдущей странице</p>
+    <p>___________________________________________________</p>
+    <p>Создайте POST запрос:</p>
+    <p class='second_text'>POST http://127.0.0.1:8000/work_with_restaurant/</p>
+    <p>Content-Type: application/json</p>
+    <p>Укажите Токен:</p>
+    <p>Authorization:  Token ................ </p>
+    <p>Используйте перечисленные в примере методы:</p>
+    
+        <p class='second_text'>"Name_restaurant": "Название,</p>
+        <p class='second_text'>"Address": "Адрес",</p>
+        <p class='second_text'>"rating": Рейтинг,</p>
+        <p class='second_text'>"about":"Описание"</p>
+        <p class='second_text'>"terrace_restaurant": "Есть,Нет",</p>
+        <p class='second_text'>"parking_restaurant": "Есть,Нет",</p>
+        <p class='second_text'>"kitchen": "Кухня"</p>
+        <p class='second_text'>"average_check": Средний чек,</p>
+        <p class='second_text'>"email": "почта@gmail.com",</p>
+        <p class='second_text'>"phone": "номер",</p>
+        <p class='second_text'>"phone": "+79008008080",</p>
+        <p class='second_text'>"photo_restaurant": null,</p>
+        <p class='second_text'>"photo_restaurant2": null,</p>
+        <p class='second_text'>"photo_restaurant3": null,</p>
+        <p class='second_text'>"menu_download": null</p>
+        <p>______________________________________________</p>
+</h1>
+
+<h2 class="new_restaurant_edit_label">Редактирование ваших записей</h2>
+<h1 class="info_edit_new_restaurant">
+
+    <p>Что бы внести изменения в  ваше заведение вы должны иметь токен</p>
+    <p>Как получить токен читайте на предыдущей странице</p>
+    <p>___________________________________________________</p>
+    <p>Создайте PUT или PATCH запрос:</p>
+    <p class='second_text'>PATCH http://127.0.0.1:8000/work_with_restaurant/</p>
+    <p>Введите id вашей записи http://127.0.0.1:8000/work_with_restaurant/id/:</p>
+    <p class='second_text'>Content-Type: application/json</p>
+    <p>Укажите Токен:</p>
+    <p class='second_text'>Authorization:  Token ................ </p>
+    <p>Используйте перечисленные в примере методы:</p>
+    
+        <p class='second_text'>"Name_restaurant": "Название,</p>
+        <p class='second_text'>"Address": "Адрес",</p>
+        <p class='second_text'>"rating": Рейтинг,</p>
+        <p class='second_text'>"about":"Описание"</p>
+        <p class='second_text'>"terrace_restaurant": "Есть,Нет",</p>
+        <p class='second_text'>"parking_restaurant": "Есть,Нет",</p>
+        <p class='second_text'>"kitchen": "Кухня"</p>
+        <p class='second_text'>"average_check": Средний чек,</p>
+        <p class='second_text'>"email": "почта@gmail.com",</p>
+        <p class='second_text'>"phone": "номер",</p>
+        <p class='second_text'>"phone": "+79008008080",</p>
+        <p class='second_text'>"photo_restaurant": null,</p>
+        <p class='second_text'>"photo_restaurant2": null,</p>
+        <p class='second_text'>"photo_restaurant3": null,</p>
+        <p class='second_text'>"menu_download": null</p>
+        <p>______________________________________________</p>
+</h1>
+<h1 class="info_delete_new_restaurant">
+    <p>Что бы удалить запись вы должны иметь токен</p>
+    <p class='second_text'>DELETE http://127.0.0.1:8000/work_with_restaurant/</p>
+    <p class='second_text'>Введите id вашей записи http://127.0.0.1:8000/work_with_restaurant/id/:</p>
+    <p class='second_text'>Content-Type: application/json</p>
+    <p class='second_text'>Authorization:  Token ................ </p>
+</h1>
+
+
+
+
+<form method="post" id="form_save" class="input_name_booking" action="{% url 'api_page' %}">
+    {% csrf_token %}
+    <button class="booking_btn" type="submit" >
+        <span class="button-text">Назад</span>
+        <div class="fill-container"></div>
+      </button>
+</form>
+
+
+
+ <style>
+    p {
+      line-height: 18px; 
+    }
+  </style>
+    <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <h1 class="text_footer_dev">Про разработчика</h1>
+                <h1 class="text_footer_project"> О проекте</h1>
+                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <a class="text_footer_api" href={% url "api_page"%}>API</a>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

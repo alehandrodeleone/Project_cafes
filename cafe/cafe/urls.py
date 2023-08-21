@@ -1,19 +1,22 @@
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.conf.urls import handler404
 from django.conf.urls.static import static
 from django.conf import settings
+from app.views import*
 from rest_framework.routers import DefaultRouter#### Необходим для маршрутизации Viewsets drf
 from app.views import start_page,save_data,\
     register,login_view,\
     user_page,setting_user,\
     application_new_res,save_application,\
     edit_restaurant,complete_html,profile_and_mail,\
-    support,RESTAURANT,NEW_RESTAURANT,Search_RESTAURANT,UserCreateView
+    support,save_request_token,\
+    api_page,api_page_2,UserCreateView,RESTAURANT,Search_RESTAURANT,work_with_restaurant
 
 
-
-r=DefaultRouter()
-r.register('new_restaurant',NEW_RESTAURANT)
+router = DefaultRouter()
+router.register(r'work_with_restaurant', work_with_restaurant)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,8 +34,19 @@ urlpatterns = [
     path("support/",support,name="support"),
     path('restaurant_api/',RESTAURANT.as_view()),#для преобразования класса в функцию необходимо as_view()
     path('search_restaurant/<pk>',Search_RESTAURANT.as_view()),#<pk> primarykey служит в роли id
-    path('users/', UserCreateView.as_view(), name='create_user')
+    path('users/', UserCreateView.as_view(), name='create_user'),
+    path('add_record/', save_request_token, name='add_record'),
+    path('api_page/',api_page,name="api_page"),
+    path('api_page_2/',api_page_2,name="api_page_2"),
 
 
-]+r.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+]+router.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+
 

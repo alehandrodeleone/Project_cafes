@@ -1,29 +1,40 @@
-GET http://127.0.0.1:8000/api/
-###
-POST  http://127.0.0.1:8000/admin_edit_restaurant/
+GET  http://127.0.0.1:8000/search_restaurant/4
 Content-Type: application/json
-{
-   "Name_restaurant": "rara",
-    "Address": "ita street 142",
 
+
+###
+GET   http://127.0.0.1:8000/restaurants/4/
+Content-Type: application/json
+# Authorization: Token e57c453332d3a32c512dfd1f00267bf6023602bd
+
+{
+    "Name_restaurant": "MamaMia2",
+    "Address": "ita street2323 142",
+    "rating": 5,
+    "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada purus ac tellus ultricies, sit amet consequat sem dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut eu vehicula mi. Cras lacinia nisi at semper fermentum. Donec auctor commodo ultrices. Nullam vestibulum odio ac erat facilisis eleifend. Curabitur aliquet massa eu elit",
+    "terrace_restaurant": "Есть",
+    "parking_restaurant": "Есть",
+    "kitchen": "italian",
+    "average_check": 5300,
+    "email": "mammia@gmail.com",
+    "phone": "+79008008080"
 }
 
+
 ###
-GET   http://127.0.0.1:8000/new_restaurant/4/
+GET    http://127.0.0.1:8000/work_with_restaurant/38/
 Content-Type: application/json
-Authorization: Token 4b23aa52e39598418f0dcac6d5ee04a2425ed00e
+Authorization: Token e57c453332d3a32c512dfd1f00267bf6023602bd
 
+{
+    "Name_restaurant": "MamaMia2",
+    "Address": "ita street2323 142",
+    "rating": 5,
+    "terrace_restaurant": "Есть",
+    "parking_restaurant": "Есть",
+    "kitchen": "italian",
+    "average_check": 5100,
+    "email": "mammia@gmail.com",
+    "phone": "+79008008080"
+}
 
-
-
-# {
-#     "Name_restaurant": "Luigi23228",
-#     "Address": "ita street 142",
-#     "rating": 5,"about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada purus ac tellus ultricies, sit amet consequat sem dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut eu vehicula mi. Cras lacinia nisi at semper fermentum. Donec auctor commodo ultrices. Nullam vestibulum odio ac erat facilisis eleifend. Curabitur aliquet massa eu elit",
-#     "terrace_restaurant": "Есть",
-#     "parking_restaurant": "Есть",
-#     "kitchen": "italian",
-#     "average_check": 4000,
-#     "email": "mahnoho@gmail.com",
-#     "phone": "+79131988602"}
-###

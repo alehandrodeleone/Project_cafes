@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/profilev4.css' %}">
+    <link rel='stylesheet' href="{% static 'css/profilev6.css' %}">
 </head>
 <body>
     <div class="container">
@@ -38,7 +38,7 @@
 <h1 class="date_registration_label">Регистрация:</h1>
 <h1 class="date_registration">{{user.date_joined}}</h1>
 <h2 class="message_label">Уведомления</h2>
-
+<h2 class="booking_label">Бронирование</h2>
 
 
 <body>
@@ -49,6 +49,30 @@
     {% endfor %}
   </div>
 </body>
+
+<body>
+    <div class="scrollable-container2">
+      {% for b in booking %}
+          <h1 class="name_userbooking">Имя: {{ b.name }}<h1>
+        <h1 class="number_userbooking">Номер: {{ b.number }}</h1>
+        <h1 class="places_booking">Мест: {{ b.places }}</h1>
+        <h1 class="date_booking">Создание брони: {{ b.date }}</h1>
+        <hr class="line">
+      {% endfor %}
+    </div>
+  </body>
+
+  
+<form method="POST" class="btn_new_token" action="{% url 'add_record' %}">
+    {% csrf_token %}
+    <input type="hidden" name="user_id" value="{{ user.id }}">
+
+    <button class="booking_btn" type="submit" >
+        <span class="button-text">Запросить токен</span>
+        <div class="fill-container"></div>
+      </button>
+  </form>
+
 </html>
 
   

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Restaurant,ui_elements,booking,application_new_restaurant,info_text,message,support_message
+from .models import Restaurant,ui_elements,booking,application_new_restaurant,info_text,message,support_message,\
+request_token
 
 @admin.register(Restaurant)
 class adminRestaurant(admin.ModelAdmin):
@@ -38,3 +39,7 @@ class adminmessage(admin.ModelAdmin):
 class support_message_admin(admin.ModelAdmin):
     list_display = ['id',"application_user","message"]
     list_filter = ["application_user"]
+@admin.register(request_token)
+class adminrequest_token(admin.ModelAdmin):
+    list_display = ['id',"request_token_user","date_request"]
+    list_filter = ['id',"request_token_user","date_request"]

@@ -10,7 +10,7 @@ class Restaurant(models.Model):
     Name_restaurant = models.CharField(max_length=15)
     Address = models.CharField(max_length=25)
     rating = models.IntegerField(null=True)
-    about = models.TextField(max_length=400)
+    about = models.TextField(max_length=400,null=True)
     terrace_restaurant = models.CharField(max_length=11)
     parking_restaurant = models.CharField(max_length=11)
     kitchen = models.CharField(max_length=20)
@@ -48,6 +48,7 @@ class booking(models.Model):
     number = models.CharField(max_length=20)
     places = models.CharField(max_length=2)
     date = models.DateTimeField(auto_now_add=True)
+    user_booking = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
     def __str__(self):
@@ -65,9 +66,6 @@ class info_text(models.Model):
     info_text_2 = models.CharField(max_length=25, null=True)
 
 
-
-
-
 class message(models.Model):
     message_user=models.ForeignKey(User,on_delete=models.CASCADE)
     heading=models.CharField(max_length=25)
@@ -76,3 +74,7 @@ class message(models.Model):
 class support_message(models.Model):
     application_user=models.ForeignKey(User,on_delete=models.CASCADE)
     message=models.TextField(max_length=800)
+
+class request_token(models.Model):
+    request_token_user=models.ForeignKey(User,on_delete=models.CASCADE)
+    date_request=models.DateTimeField(auto_now_add=True)

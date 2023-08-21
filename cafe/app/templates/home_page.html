@@ -150,8 +150,7 @@
     </div>
 
 
-
-
+   
     <div class="footer">
         {% for i in back_img %}
             <img class="footer_img" src="{{i.f_image.url}}">
@@ -159,30 +158,8 @@
                 <h1 class="text_footer_dev">Про разработчика</h1>
                 <h1 class="text_footer_project"> О проекте</h1>
                 <h1 class="text_footer_telegram">Телеграм Бот</h1>
-                <h1 class="text_footer_api">API</h1>
+                <a class="text_footer_api" href={% url 'api_page' %}>API</a>
         {% endfor %}
     </div> 
-
-<!--        <div class="pagination">-->
-<!--  {% if restaurant_page.has_previous %}-->
-<!--    <a href="?page={{ restaurant_page.previous_page_number }}">« Previous</a>-->
-<!--  {% endif %}-->
-
-<!--  {% for num in restaurant_page.paginator.page_range %}-->
-<!--    {% if num == restaurant_page.number %}-->
-<!--      <span class="current-page">{{ num }}</span>-->
-<!--    {% elif num > restaurant_page.number|add:'-3' and num < restaurant_page.number|add:'3' %}-->
-<!--      <a href="?page={{ num }}">{{ num }}</a>-->
-<!--    {% endif %}-->
-<!--  {% endfor %}-->
-
-<!--  {% if restaurant_page.has_next %}-->
-<!--    <a href="?page={{ restaurant_page.next_page_number }}">Next »</a>-->
-<!--  {% endif %}-->
-        
-
-
-
-
 </body>
 </html>

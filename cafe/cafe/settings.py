@@ -65,7 +65,7 @@ ROOT_URLCONF = 'cafe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Krasnoyarsk'
 
 USE_I18N = True
 
@@ -152,8 +152,8 @@ REST_FRAMEWORK={
     "DEFAULT_AUTHENTICATION_CLASSES":[
         'rest_framework.authentication.TokenAuthentication'#данный параметр отвечает за выбранный метод аутентификации
                                       ],
-    "DEFAULT_THROTTLE_CLASSES":["rest_framework.throttling.UserRateThrottling"],# ограничение на запросы авторизованного юзера, анонимного юзера : rest_framework.throttling.AnonRateThrottling
-    "DEFAULT_THROTTLE_RATES":{"user":"10/minute"}
+    # "DEFAULT_THROTTLE_CLASSES":["rest_framework.throttling.UserRateThrottle"],# ограничение на запросы авторизованного юзера, анонимного юзера : rest_framework.throttling.AnonRateThrottling
+    # "DEFAULT_THROTTLE_RATES":{"user":"10/minute"}
 
 
 }

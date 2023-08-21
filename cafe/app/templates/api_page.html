@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{%load static %}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/api_pagev2.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <a href={% url 'start_page' %}  >
+                <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+                </a>
+    <div class="btn_registration">
+        <form id="registration_form" action="{% url 'register' %}">
+            <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
+        </form>
+    </div>
+
+
+    <script>
+        function submitForm() {
+            document.getElementById("registration_form").submit();
+        }
+    </script>
+
+            {% endfor %}
+        </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+
+
+<h2 class="txt_label_api_token">Ключ доступа-Токен</h2>
+<h1 class="info_rigistration"><p>Токен выдается только после регистрации пользователя.</p>
+    <p>В первую очередь вам необходимо пройти регистрацию,</p><p>это можно осуществить 2 способами:</p>
+    <p>1. Через ui интерфейс</p><p>2. Через POST запрос</p>
+ </h1>
+ <h1 class="method_post_reg">
+    <p>POST запрос можно реализовать 2 способами</p>
+    <p>1. Через браузер-после основного url http://127.0.0.1:8000/ Используйте метод "users/"</p>
+    <p>В интерфейсе введите данные, на этом все</p>
+    <p>________________________________________</p>
+    <p>2. POST запрос через REST CLIENT</p>
+    <p>Создайте POST запрос: </p>
+    <p class='second_text'>POST http://127.0.0.1:8000/users/</p>
+
+    <p>Передайте тип данных:</p>
+    <p class='second_text' >Content-Type: application/json</p>
+
+    <p>Отправьте данные:</p>
+    <p class='second_text'>{
+        <p class='second_text'>"username": "Логин",</p>
+        <p class='second_text'>"email": "Почта",</p>
+        <p class='second_text'>"password": "Пароль",</p>
+        <p class='second_text'>"first_name": "Имя",</p>
+        <p class='second_text'>"last_name": "Фамилия"</p>
+      }
+      </p>
+ </h1>
+ <h1 class="request_token_info">Запрос токена возможен только через личный кабинет.
+    <p>Выдача токена производится исключительно Администратором.</p>
+    <p>Где получить Токен:</p>
+    <p>Личный кабинет-профиль и почта-запросить токен</p>
+    <p>Токен будет направлен в раздел "уведомления"</p>
+
+</h1>
+
+<h2 class="get_label">GET запросы</h2>
+<h1 class="request_restaurant">GET запросы на получение информации о ресторанах,
+    <p>не требуют токена.<p>
+    <p>GET запрос можно реализовать 2 способами</p>
+    <p>1. Через браузер</p>
+    <p>2. Через REST CLIENT</p>
+    <p>_____________________________________________</p>
+    <p>1. Через браузер-после основного url http://127.0.0.1:8000/</p>
+    <p> Используйте метод "restaurant_api/"</p>
+    <p>____________________________________</p>
+    <p>2. GET запрос через REST CLIENT</p>
+    <p>Создайте GET запрос: </p>
+    <p class='second_text'>GET http://127.0.0.1:8000/restaurant_api/</p>
+    <p>Передайте тип данных:</p>
+    <p class='second_text'>Content-Type: application/json</p>
+    <p>Для поиска по тексту используйте любой из методов:<p>
+            <p class='second_text'>"Name_restaurant": "Название,</p>
+            <p class='second_text'>"Address": "Адрес",</p>
+            <p class='second_text'>"rating": Рейтинг,</p>
+            <p class='second_text'>"about":"Описание"</p>
+            <p class='second_text'>"terrace_restaurant": "Есть,Нет",</p>
+            <p class='second_text'>"parking_restaurant": "Есть,Нет",</p>
+            <p class='second_text'>"kitchen": "Кухня"</p>
+            <p class='second_text'>"average_check": Средний чек,</p>
+            <p class='second_text'>"email": "почта@gmail.com",</p>
+            <p class='second_text'>"phone": "номер",</p>
+            <p class='second_text'>"to_publish": true,false</p>
+            <p class='second_text'>______________________________________________</p>
+            <p class='second_text'>Пример: http://127.0.0.1:8000/restaurant_api/?rating=5</p>
+    <p>Поиск ограниченного кол-ва записей LIMIT&OFFSET</p>
+    <p>Используйте метод:/?limit=кол-во&offset= c какой записи начать поиск</p>
+    <p class='second_text'>Пример: GET http://127.0.0.1:8000/restaurant_api/?limit=2&offset=4</p>
+    <p>_________________________________________________________________</p>
+    <p class='second_text'>Поиск по id: GET http://127.0.0.1:8000/search_restaurant/номер id</p>
+</h1>
+
+
+<form method="post" id="form_save" class="input_name_booking" action="{% url 'api_page_2' %}">
+    {% csrf_token %}
+        <button class="booking_btn" type="submit" >
+            <span class="button-text">Далее</span>
+            <div class="fill-container"></div>
+          </button>
+    </form>
+
+
+ <style>
+    p {
+      line-height: 18px; 
+    }
+  </style>
+    <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <h1 class="text_footer_dev">Про разработчика</h1>
+                <h1 class="text_footer_project"> О проекте</h1>
+                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <a class="text_footer_api" href={% url "api_page"%}>API</a>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
