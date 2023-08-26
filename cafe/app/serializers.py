@@ -20,11 +20,15 @@ class UserSerializer(serializers.ModelSerializer):# создание новог�
         extra_kwargs = {'password': {'write_only': True}}#отсутствмие отображения пароля после создания 
         
 
-
-
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['id','Name_restaurant',"Address","rating","about",'terrace_restaurant',
                 'parking_restaurant','kitchen','average_check','email',"phone","photo_restaurant", "photo_restaurant2","photo_restaurant3"]
         read_only_fields=["owner_cafe"]#только чтение , автоматически добавляется из за perform_create
+
+class application_doc(serializers.ModelSerializer):
+    class Meta:
+        model=application_new_restaurant
+        fields=['id',"name_new_restaurant","blank","document1","document2","document3"]
+        read_only_fields=['user']

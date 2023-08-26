@@ -12,11 +12,14 @@ from app.views import start_page,save_data,\
     application_new_res,save_application,\
     edit_restaurant,complete_html,profile_and_mail,\
     support,save_request_token,\
-    api_page,api_page_2,UserCreateView,RESTAURANT,Search_RESTAURANT,work_with_restaurant
+    api_page,api_page_2,UserCreateView,RESTAURANT,Search_RESTAURANT,\
+    work_with_restaurant,tg_page,about_project_page,\
+    application_new_restauran_doc,start_page_pagination_style2,save_data2
 
 
 router = DefaultRouter()
 router.register(r'work_with_restaurant', work_with_restaurant)
+router.register(r"application_doc",application_new_restauran_doc)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +41,11 @@ urlpatterns = [
     path('add_record/', save_request_token, name='add_record'),
     path('api_page/',api_page,name="api_page"),
     path('api_page_2/',api_page_2,name="api_page_2"),
+    path('tg_page/',tg_page,name="tg_page"),
+    path("about_project_page/",about_project_page,name="about_project_page"),
+    path('HomePage/',start_page_pagination_style2,name='HomePage'),
+    path('save_data2/',save_data2,name='save_data2')
+
 
 
 

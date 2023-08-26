@@ -3,6 +3,14 @@
 import os
 import sys
 
+import threading
+from app.telegram_bot import start_bot
+
+ # Запускаем бота в отдельном потоке
+bot_thread = threading.Thread(target=start_bot)
+bot_thread.daemon = True
+bot_thread.start()
+
 
 def main():
     """Run administrative tasks."""
@@ -16,7 +24,10 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+    
 
 
 if __name__ == '__main__':
     main()
+    
+

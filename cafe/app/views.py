@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
 
+
+
+
 def start_page(request):
     # Restaurant.objects.all().delete()
     page_number = int(request.GET.get('page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
@@ -21,6 +24,20 @@ def start_page(request):
                }
     return render(request, "home_page.html", context)
 
+def start_page_pagination_style2(request):
+    # Restaurant.objects.all().delete()
+    page_number = int(request.GET.get('Page', 1))# СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
+    back_img = ui_elements.objects.all()# ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
+    restaurant_info = Restaurant.objects.filter(to_publish=True)# Получаем информацию о ресторанах
+    paginator = Paginator(restaurant_info, 4)
+    page = paginator.get_page(page_number)
+    
+    # current_url = request.build_absolute_uri()  # ПОЛУЧЕНИЕ ТЕКУЩЕЙ ССЫЛКИ
+    context = {'page': page,
+               'back_img': back_img,
+               }
+    return render(request, "HomePage.html", context)
+
 def save_data(request):
     previous_url = request.META.get('HTTP_REFERER')#ПОЛУЧЕНИЕ ПРЕДЫДУЩЕЙ СТРАНИЦЫ ДЛЯ ПЕРЕДАЧИ ЕЕ В АДРЕС ДЛЯ ПОСЛЕДУЮЩЕЙ ПАГИНАЦИИ
     print(previous_url)
@@ -29,13 +46,11 @@ def save_data(request):
     context = {'back_img': back_img,
                'restaurant': restaurant_info,
                }
-
     url = requests.get(previous_url).content# ПОЛУЧАЕМ АДРЕС ДЛЯ ПАРСИНГА
     soup = BeautifulSoup(url, 'html.parser')#ПЕРЕДАЕМ АДРЕС В BS И ВЫБИРАЕМ ПАРСЕР
     h2_list = soup.find('h2', {'class': 'name_restaurant'}).text# ИЩЕМ НЕОБХОДИМУЮ ИНФОРМАЦИЮ
     # РЕАЛИЗАЦИЯ ПАРСЕРА ВМЕСТО ЗАПРОСОВ REQUEST
 
-    
     if request.method == 'POST':
         input1 = request.POST.get('input-booking')
         input2 = request.POST.get('input-number_booking')
@@ -53,7 +68,32 @@ def save_data(request):
     return render(request, 'complete.html', context)
 
 
+def save_data2(request):
+    previous_url = request.META.get('HTTP_REFERER')#ПОЛУЧЕНИЕ ПРЕДЫДУЩЕЙ СТРАНИЦЫ ДЛЯ ПЕРЕДАЧИ ЕЕ В АДРЕС ДЛЯ ПОСЛЕДУЮЩЕЙ ПАГИНАЦИИ
+    print(previous_url)
+    restaurant_info = Restaurant.objects.all()
+    back_img = ui_elements.objects.all()
+    context = {'back_img': back_img,
+               'restaurant': restaurant_info,
+               }
 
+
+    if request.method == 'POST':
+        input1 = request.POST.get('input-booking')
+        input2 = request.POST.get('input-number_booking')
+        input3 = request.POST.get('input-people_booking')
+        input4 = request.POST.get('name_restaurant')
+        
+        # Поиск ресторана, у которого Name_restaurant совпадает с restaurant из формы
+        restaurant_match = Restaurant.objects.get(Name_restaurant=input4)
+        
+        # Получение пользователя, связанного с найденным рестораном
+        user_match = restaurant_match.owner_cafe
+        a = booking(name=input1, number=input2, places=input3, restaurant=input4, user_booking=user_match)
+        a.save()
+        return HttpResponseRedirect(request.path_info)
+    
+    return render(request, 'complete.html', context)
 
 def register(request):
     user=request.user
@@ -73,8 +113,6 @@ def register(request):
     return render(request, 'Registration_new_user.html', context)
 
 
-
-
 def login_view(request):
     back_img = ui_elements.objects.all()
     context={
@@ -91,6 +129,7 @@ def login_view(request):
             messages.error(request, 'Неверный логин или пароль')
             return redirect('login')
     return render(request, 'authorization.html', context)
+
 
 def user_page(request):
     page_number = int(request.GET.get('user_page', 1))  # СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
@@ -118,6 +157,7 @@ def setting_user(request):
     }
     return render(request,"setting_user.html",context)
 
+
 def application_new_res(request):
     back_img = ui_elements.objects.all()
     user = request.user
@@ -130,6 +170,7 @@ def application_new_res(request):
         "info":info
     }
     return render (request,"application_new_restaurant.html",context)
+
 
 def save_application(request):
     previous_url = request.META.get('HTTP_REFERER')#ПОЛУЧЕНИЕ ПРЕДЫДУЩЕЙ СТРАНИЦЫ ДЛЯ ПЕРЕДАЧИ ЕЕ В АДРЕС ДЛЯ ПОСЛЕДУЮЩЕЙ ПАГИНАЦИИ
@@ -162,7 +203,7 @@ def save_application(request):
         input16 = request.FILES.get('photo_restaurant2')
         input17 = request.FILES.get('photo_restaurant3')
         input18 = request.FILES.get('menu_download')
-        a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4,document3=input5)# сохранение данных из инпутов в модель джанго
+        a = application_new_restaurant(name_new_restaurant=input1, blank=input2, document1=input3, document2=input4,document3=input5,user=user)# сохранение данных из инпутов в модель джанго
         a.save()
         b = Restaurant(Name_restaurant=input6,Address=input7,terrace_restaurant=input8,parking_restaurant=input9,
                      kitchen=input10,average_check=input11,email=input12,phone=input13,about=input14,photo_restaurant=input15,
@@ -170,6 +211,7 @@ def save_application(request):
         b.save()
         return HttpResponseRedirect(request.path_info)
     return render(request, 'complete_application.html', context)
+
 
 def edit_restaurant(request):
     back_img = ui_elements.objects.all()
@@ -195,6 +237,7 @@ def edit_restaurant(request):
     }
     return render(request, 'edit_restaurant.html', context)
 
+
 def profile_and_mail(request):
     user = request.user
     bookings=booking.objects.filter(user_booking=user)
@@ -212,6 +255,7 @@ def profile_and_mail(request):
         
     return render(request, "profile.html", context)
 
+
 def save_request_token(request):
     user = request.user
     Request_token =request_token.objects.filter(request_token_user=user)
@@ -222,8 +266,8 @@ def save_request_token(request):
     Request_token_save=request_token(request_token_user=user)
     Request_token_save.save()
 
-            
     return render(request, "complete_application.html", context)
+
 
 def support(request):
     user=request.user
@@ -249,6 +293,7 @@ def support(request):
     }
     return render(request,"support.html",context)
 
+
 def complete_html(request):
     user = request.user
     context = {
@@ -266,6 +311,7 @@ def api_page(request):
     }
     return render(request,"api_page.html",context)
 
+
 def api_page_2(request):
     back_img=ui_elements.objects.all()
     user=request.user
@@ -276,11 +322,24 @@ def api_page_2(request):
     return render(request,"api_page_2.html",context)
 
 
-def handler404(request, exception):
-    return render(request, '404.html', status=404)
+def tg_page(request):
+    back_img=ui_elements.objects.all()
+    user=request.user
+    context={
+        "back_img":back_img,
+        "user":user
+    }
+    return render(request,"TG.html",context)
 
 
-
+def about_project_page(request):
+    user=request.user
+    back_img=ui_elements.objects.all()
+    context={
+        "back_img":back_img,
+        "user":user
+    }
+    return render(request,"about_project.html",context)
 
 
 # //////////////////////////////////////////////////////////API//////////////////////////////////////////////////////////////
@@ -320,3 +379,10 @@ class  work_with_restaurant(ModelViewSet):
     permission_classes = [IsAuthenticated,RestaurantPermission]#Аутентификация по токену и разрешения permission
     def perform_create(self, serializer):
         serializer.save(owner_cafe=self.request.user)# создание записи от лица владельца токена
+        
+class application_new_restauran_doc(ModelViewSet):
+    queryset = application_new_restaurant.objects.all()
+    serializer_class = application_doc
+    permission_classes = [IsAuthenticated,application_doc_Permission]
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

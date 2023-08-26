@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/homev18.css' %}">
+    <link rel='stylesheet' href="{% static 'css/homev2.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Title</title>
@@ -120,8 +120,6 @@
 
 
 {% for r in page %}
-
-
 <button class="button" >
 
     <a class="button-text" href={{ r.menu_download.url }}>Открыть меню</a>
@@ -149,15 +147,30 @@
         {% endif %}
     </div>
 
+<div class="icon-container">
+  <div class="mode-icon"></div>
+  <div class="mode-text">Режим</div>
+</div>
+
+<iconify-icon onclick="list()" class="icon_list" icon="svg-spinners:blocks-shuffle-3" width="32" height="32"></iconify-icon>
+<script  src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<script>
+    function list() {
+        window.location.href = "{% url 'HomePage' %}";
+    }
+</script>
+
+
 
    
     <div class="footer">
         {% for i in back_img %}
             <img class="footer_img" src="{{i.f_image.url}}">
             <div class="footer_btn">
-                <h1 class="text_footer_dev">Про разработчика</h1>
-                <h1 class="text_footer_project"> О проекте</h1>
-                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <a class="text_footer_dev">Про разработчика</a>
+                <a class="text_footer_project" href={% url "about_project_page"%}> О проекте</a>
+                <a class="text_footer_telegram"href={% url 'tg_page' %}>Телеграм Бот</a>
                 <a class="text_footer_api" href={% url 'api_page' %}>API</a>
         {% endfor %}
     </div> 

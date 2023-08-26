@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/authv4.css' %}">
+<link rel='stylesheet' href="{% static 'css/api_pagev3.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 </head>
@@ -34,33 +34,10 @@
 
             {% endfor %}
         </div>
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
 
+    <a href="http://qrcoder.ru" target="_blank" class='qr'><img src="http://qrcoder.ru/code/?https%3A%2F%2Ft.me%2FRestaurantAdminBot&10&0" width="370" height="370" border="0" title="QR код"></a>
 
-        <h2 class="label_authorization">Авторизация</h2>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <h1 for="username" class="login_auth">Логин</h1>
-        <input type="text" id="username" name="username" class="input_login">
-        <br>
-        <h1 for="password" class="password_auth">Пароль:<h1>
-        <input type="password" id="password" name="password" class="input_password">
-        <br>
-
-        <button class="booking_btn" type="submit" >
-            <span class="button-text">Авторизоваться</span>
-            <div class="fill-container"></div>
-          </button>
-       
-    </form>
-
-
+<a href="https://t.me/RestaurantAdminBot" class="qr_link">Перейти по ссылке к боту</a>
 
 
     <div class="footer">
@@ -70,9 +47,10 @@
                 <h1 class="text_footer_dev">Про разработчика</h1>
                 <h1 class="text_footer_project"> О проекте</h1>
                 <a class="text_footer_telegram"href={% url 'tg_page' %}>Телеграм Бот</a>
-                <a class="text_footer_api" href={% url 'api_page' %}>API</a>
+                <a class="text_footer_api" href={% url "api_page"%}>API</a>
         {% endfor %}
-    </div> 
+    </div>
 
 </body>
 </html>
+

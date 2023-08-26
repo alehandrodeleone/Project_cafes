@@ -23,6 +23,7 @@ class Restaurant(models.Model):
     phone = PhoneNumberField(null=True)
     owner_cafe=models.OneToOneField(User,on_delete=models.CASCADE,related_name="res",null=True)
     to_publish=models.BooleanField(default=False)
+    datetime=models.DateTimeField(auto_now_add=True,null=True)
 
 
     def __str__(self):
@@ -49,8 +50,6 @@ class booking(models.Model):
     places = models.CharField(max_length=2)
     date = models.DateTimeField(auto_now_add=True)
     user_booking = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
-
     def __str__(self):
         return self.name
 
@@ -60,6 +59,10 @@ class application_new_restaurant(models.Model):
     document1 = models.FileField(upload_to="documents_owner/")
     document2 = models.FileField(upload_to="documents_owner/")
     document3 = models.FileField(upload_to="documents_owner/")
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    publish=models.BooleanField(default=False)
+    datetime=models.DateTimeField(auto_now_add=True,null=True)
+
 
 class info_text(models.Model):
     info_text_1 = models.TextField(max_length=800, null=True)
@@ -74,7 +77,8 @@ class message(models.Model):
 class support_message(models.Model):
     application_user=models.ForeignKey(User,on_delete=models.CASCADE)
     message=models.TextField(max_length=800)
-
+    answered=models.BooleanField(default=False)
+    datetime=models.DateTimeField(auto_now_add=True,null=True)
 class request_token(models.Model):
     request_token_user=models.ForeignKey(User,on_delete=models.CASCADE)
     date_request=models.DateTimeField(auto_now_add=True)

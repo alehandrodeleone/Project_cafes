@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel='stylesheet' href="{% static 'css/api_pagev2.css' %}">
+<link rel='stylesheet' href="{% static 'css/api_pagev3.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 </head>
@@ -138,7 +138,7 @@
             <div class="footer_btn">
                 <h1 class="text_footer_dev">Про разработчика</h1>
                 <h1 class="text_footer_project"> О проекте</h1>
-                <h1 class="text_footer_telegram">Телеграм Бот</h1>
+                <a class="text_footer_telegram"href={% url 'tg_page' %}>Телеграм Бот</a>
                 <a class="text_footer_api" href={% url "api_page"%}>API</a>
         {% endfor %}
     </div>

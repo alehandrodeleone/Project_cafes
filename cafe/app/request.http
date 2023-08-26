@@ -38,3 +38,15 @@ Authorization: Token e57c453332d3a32c512dfd1f00267bf6023602bd
     "phone": "+79008008080"
 }
 
+
+###
+GET  https://api.telegram.org/bot6581255900:AAHlSpSFWuHGcmcM-x3wrfrlNe3JL-8X0Kc/getUpdates
+Content-Type: application/json
+###
+POST  http://127.0.0.1:8000/application_doc/
+Authorization: Token f7bcca959f76d30d77670f48d0af87e0e3403cd2
+Content-Type: application/json
+
+{
+    "name_new_restaurant": "ujdy22j"
+}

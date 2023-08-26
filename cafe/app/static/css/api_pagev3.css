@@ -295,3 +295,13 @@ body{
     font-family:'Roboto Light 300', sans-serif;
 }
 
+.qr{
+    position: absolute;
+    left: 40%;
+    top: 20%;
+}
+.qr_link{
+    position: absolute;
+    left: 45%;
+    top:57%;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'css/HomePagev6.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Title</title>
+</head>
+<body >
+
+    <div class="container">
+        {% for i in back_img %}
+            <img class='headers' src="{{i.header.url}}" >
+            <a href={% url 'start_page' %}  >
+            <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
+            </a>
+            <div class="btn_autorization" >
+                <form id="autorization_form" action="{% url 'login' %}">
+                <a href={% url 'login' %} class="btn_a_txt" style="text-decoration: none;" >Авторизация</a>
+            </form>
+            </div>
+
+
+<div class="btn_registration">
+    <form id="registration_form" action="{% url 'register' %}">
+        <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
+    </form>
+</div>
+
+
+<script>
+    function submitForm() {
+        document.getElementById("registration_form").submit();
+    }
+</script>
+
+        {% endfor %}
+    </div> 
+
+
+<body>
+    <iconify-icon onclick="list()" class="icon_list" icon="svg-spinners:blocks-shuffle-3" width="32" height="32"></iconify-icon>
+<script  src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<script>
+    function list() {
+        window.location.href = "{% url 'start_page' %}";
+    }
+</script>
+    <div class="restaurant-container">
+        {% for restaurant in page %}
+            <div class="restaurant-item">
+                        
+                <form method="post" id="form_save"action="{% url 'save_data2' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="name_restaurant" value="{{ restaurant.Name_restaurant }}">
+                        {{ form.as_p }}
+                        
+                <img src="{{ restaurant.photo_restaurant.url }}">
+                <input type="hidden" name="name_restaurant" value="{{ restaurant.Name_restaurant }}">
+                <h2 class="name_restaurant">{{ restaurant.Name_restaurant }}</h2>
+                <h4>Звезд:{{restaurant.rating}}
+                    <p>Кухня:{{restaurant.kitchen}}</p>
+                    <p>Номер:{{restaurant.phone}}</p>
+                    <p>Адрес:{{restaurant.Address}}</p>
+
+                    <p class="booking_form"><label  for="input-field">Ваше имя:</label></p>
+                    <p class="booking_form"><input  required type="text" id="input-field" name="input-booking" maxlength=13></p>
+                    <p class="booking_form"><label  for="input-field">Номер:</label> </p>
+                    <p class="booking_form"><input  required type="tel" id="input-field" name="input-number_booking"  placeholder="+7 (___) ___-__-__"
+                    pattern="[+]{1}[7]{1}[0-9]{10}"
+                    required>
+                    <label class="label_position" for="input-field">Мест:</label>
+                    <input class="input_position" type="text" id="input-field" name="input-people_booking" maxlength=1></p>
+
+
+                    <p><button class="booking_btn" type="submit" >
+                        <span class="button-text">Забронировать</span>
+                        <div class="fill-container"></div>
+                      </button></p>
+                    </form>
+                </h4>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="previous">
+        {% if page.has_previous%}
+        {% for r in page %}
+            <a class="previous_page" href="?Page={{page.previous_page_number}}" style="text-decoration: none;" >Назад</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="next_page">
+        {% if page.has_next %}
+        {% for r in page %}
+            <a class="next_page" href="?Page={{page.next_page_number}}" style="text-decoration: none;">Вперед</a>
+
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+     <div class="footer">
+        {% for i in back_img %}
+            <img class="footer_img" src="{{i.f_image.url}}">
+            <div class="footer_btn">
+                <a class="text_footer_dev">Про разработчика</a>
+                <a class="text_footer_project" href={% url "about_project_page"%}> О проекте</a>
+                <a class="text_footer_telegram"href={% url 'tg_page' %}>Телеграм Бот</a>
+                <a class="text_footer_api" href={% url 'api_page' %}>API</a>
+        {% endfor %}
+    </div> 
+</body>
+</html>

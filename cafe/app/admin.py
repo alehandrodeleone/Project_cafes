@@ -5,7 +5,7 @@ request_token
 @admin.register(Restaurant)
 class adminRestaurant(admin.ModelAdmin):
     list_display = ['id', "owner_cafe",'Name_restaurant','rating','kitchen','average_check','photo_restaurant',
-                    'photo_restaurant2','photo_restaurant3','menu_download','email',"phone"]
+                    'photo_restaurant2','photo_restaurant3','menu_download','email',"phone","datetime"]
     list_filter = ["owner_cafe","rating","to_publish"]
 @admin.register(ui_elements)
 class adminui(admin.ModelAdmin):
@@ -19,15 +19,13 @@ class admin_bookings(admin.ModelAdmin):
 
 @admin.register(application_new_restaurant)
 class admin_application_new_restaurant(admin.ModelAdmin):
-    list_display = ["id",'name_new_restaurant']
-    list_filter = ['id','name_new_restaurant']
+    list_display = ["id","user",'name_new_restaurant',"datetime","publish","blank","document1","document2","document3"]
+    list_filter = ['id','name_new_restaurant',"user","publish","datetime"]
 
 
 @admin.register(info_text)
 class admin_info_text(admin.ModelAdmin):
     list_display = ["id","info_text_2"]
-    
-    
 
 
 @admin.register(message)
@@ -37,7 +35,7 @@ class adminmessage(admin.ModelAdmin):
 
 @admin.register(support_message)
 class support_message_admin(admin.ModelAdmin):
-    list_display = ['id',"application_user","message"]
+    list_display = ['id',"application_user","message","datetime",'answered']
     list_filter = ["application_user"]
 @admin.register(request_token)
 class adminrequest_token(admin.ModelAdmin):

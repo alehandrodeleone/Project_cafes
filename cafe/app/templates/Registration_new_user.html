@@ -99,8 +99,8 @@
             <div class="footer_btn">
                 <h1 class="text_footer_dev">Про разработчика</h1>
                 <h1 class="text_footer_project"> О проекте</h1>
-                <h1 class="text_footer_telegram">Телеграм Бот</h1>
-                <h1 class="text_footer_api">API</h1>
+                <a class="text_footer_telegram"href={% url 'tg_page' %}>Телеграм Бот</a>
+                <a class="text_footer_api" href={% url 'api_page' %}>API</a>
         {% endfor %}
     </div>
 
