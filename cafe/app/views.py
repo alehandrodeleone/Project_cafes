@@ -144,6 +144,34 @@ def user_page(request):
         "user_page":page
     }
     return render(request,"user_page.html",context)
+def user_page2(request):
+  #   page_number = int(request.GET.get('UserPage', 1))  # СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
+  # # Получаем информацию о ресторанах
+  #   restaurant_info = Restaurant.objects.filter(to_publish=True)# Получаем информацию о ресторанах
+  #   paginator = Paginator(restaurant_info, 4)
+  #   page = paginator.get_page(page_number)
+  #   back_img=ui_elements.objects.all()
+  #   user = request.user# БЕРЕМ ДАННЫЕ ЮЗЕРА И ПЕРЕДАЕМ ИХ В РЕКВЕСТ ДЛЯ ПОСЛЕДУЮЩЕГО ИСПОЛЬЗОВАЕНИЯ
+  #   context={
+  #       "back_img":back_img,
+  #       "user_login":user.username,
+  #       "user_page":page
+  #   }
+  #   return render(request,"UserPage.html",context)
+
+    page_number = int(request.GET.get('Page', 1))  # СТРАНИЦА ПО УМОЛЧАНИЮ ЕСЛИ ОСТУТСТВУЕТ АДРЕС ПАГИНАЦИИ
+    back_img = ui_elements.objects.all()  # ПОЛУЧАЕМ ВСЕ ИЗОБРАЖЕНИЯ ДЛЯ UI ИЗ БД
+    restaurant_info = Restaurant.objects.filter(to_publish=True)  # Получаем информацию о ресторанах
+    paginator = Paginator(restaurant_info, 4)
+    page = paginator.get_page(page_number)
+    user = request.user
+    # current_url = request.build_absolute_uri()  # ПОЛУЧЕНИЕ ТЕКУЩЕЙ ССЫЛКИ
+    context = {'page': page,
+               'back_img': back_img,
+               "user_login": user.username,
+
+               }
+    return render(request, "UserPage.html", context)
 
 
 def setting_user(request):

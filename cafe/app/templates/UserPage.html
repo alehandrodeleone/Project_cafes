@@ -6,52 +6,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/HomePagev6.css' %}">
+    <link rel='stylesheet' href="{% static 'css/UserPagev2.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Title</title>
 </head>
-<body >
+<body>
 
+   
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
-            <a href={% url 'start_page' %}  >
-            <img class='icoheaders' src="{{i.ico_header.url}}" href={% url 'start_page' %} >
-            </a>
-            <div class="btn_autorization" >
-                <form id="autorization_form" action="{% url 'login' %}">
-                <a href={% url 'login' %} class="btn_a_txt" style="text-decoration: none;" >Авторизация</a>
-            </form>
-            </div>
-
-
-<div class="btn_registration">
-    <form id="registration_form" action="{% url 'register' %}">
-        <h1 onclick="submitForm()" class="btn_r_txt">Регистрация</h1>
-    </form>
-</div>
-
-
-<script>
-    function submitForm() {
-        document.getElementById("registration_form").submit();
-    }
-</script>
-
-        {% endfor %}
-    </div> 
-
-
-<body>
+            <a href={% url 'user_page' %}  >
+                <img class='icoheaders' src="{{i.ico_header.url}}" >
+                </a>
+            <div class="btn_logout">
+                <a href={% url 'start_page' %} class="btn_logout_txt" style="text-decoration: none;" >Выйти</a>
+                <div class="user_setting">
+                        <a href={% url 'setting_user' %}  class="user_btn" style="text-decoration: none;">{{ user_login }}</a>
+                </div>
+                {% endfor %}
+        </div>
+    </div>  
     <iconify-icon onclick="list()" class="icon_list" icon="svg-spinners:blocks-shuffle-3" width="32" height="32"></iconify-icon>
-<script  src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script  src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <script>
+        function list() {
+            window.location.href = "{% url 'user_page' %}";
+        }
+    </script>
 
-<script>
-    function list() {
-        window.location.href = "{% url 'start_page' %}";
-    }
-</script>
+
     <div class="restaurant-container">
         {% for restaurant in page %}
             <div class="restaurant-item">
@@ -89,7 +75,6 @@
         {% endfor %}
     </div>
 
-
     <div class="previous">
         {% if page.has_previous%}
         {% for r in page %}
@@ -106,6 +91,7 @@
         {% endfor %}
         {% endif %}
     </div>
+
 
 
 

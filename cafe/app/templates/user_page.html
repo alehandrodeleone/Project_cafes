@@ -9,9 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'css/user_pagev6.css' %}">
+    <link rel='stylesheet' href="{% static 'css/user_pagev7.css' %}">
 </head>
+
+
 <body>
+
+   
     <div class="container">
         {% for i in back_img %}
             <img class='headers' src="{{i.header.url}}" >
@@ -26,7 +30,14 @@
                 {% endfor %}
         </div>
     </div>  
-
+    <iconify-icon onclick="list()" class="icon_list" icon="svg-spinners:blocks-shuffle-3" width="32" height="32"></iconify-icon>
+    <script  src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <script>
+        function list() {
+            window.location.href = "{% url 'UserPage' %}";
+        }
+    </script>
     
     <div class="container_restaurant">
         {% for r in user_page %}

@@ -14,7 +14,7 @@ from app.views import start_page,save_data,\
     support,save_request_token,\
     api_page,api_page_2,UserCreateView,RESTAURANT,Search_RESTAURANT,\
     work_with_restaurant,tg_page,about_project_page,\
-    application_new_restauran_doc,start_page_pagination_style2,save_data2
+    application_new_restauran_doc,start_page_pagination_style2,save_data2,user_page2
 
 
 router = DefaultRouter()
@@ -44,7 +44,8 @@ urlpatterns = [
     path('tg_page/',tg_page,name="tg_page"),
     path("about_project_page/",about_project_page,name="about_project_page"),
     path('HomePage/',start_page_pagination_style2,name='HomePage'),
-    path('save_data2/',save_data2,name='save_data2')
+    path('save_data2/',save_data2,name='save_data2'),
+    path('UserPage/',user_page2,name='UserPage')
 
 
 

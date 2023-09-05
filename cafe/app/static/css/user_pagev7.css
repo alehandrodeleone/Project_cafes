@@ -644,3 +644,11 @@ body{
   .button:hover .fill-container::after {
     transform: translateY(0);
   }
+
+  .icon_list{
+    position: absolute;
+    left: 20%;
+    top: 17%;
+    width: 100px;
+    height: 100px;
+  }
